@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 2: 변수의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">📦</span>
+        <h1>변수의 세계</h1>
+        <p class="subtitle">World 2 — 데이터를 담는 이름표 상자</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          변수는 프로그래밍의 가장 기본적인 개념입니다.
+          상자 비유를 통해 직관적으로 이해시켜 주세요.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>변수</strong>에 값을 저장하고 꺼내 쓰기</li>
+          <li class="fragment">변수로 <strong>계산</strong>하기</li>
+          <li class="fragment">두 변수의 값을 <strong>교환(swap)</strong>하기</li>
+        </ul>
+        <aside class="notes">
+          세 가지 학습 목표를 하나씩 보여주세요.
+        </aside>
+      </section>
+
+      <!-- 3. 변수 비유 -->
+      <section>
+        <h2>변수란 뭘까?</h2>
+        <div class="analogy-card">
+          <p>📦 변수는 <strong>이름표가 붙은 상자</strong>야!</p>
+        </div>
+        <ul style="margin-top:1em;">
+          <li class="fragment">상자에 <strong>값을 넣고</strong> (저장)</li>
+          <li class="fragment">이름표를 보고 <strong>꺼내 쓰고</strong> (사용)</li>
+          <li class="fragment">새 값으로 <strong>바꿀 수도</strong> 있어 (재할당)</li>
+        </ul>
+        <aside class="notes">
+          상자 비유를 손으로 그리며 설명해도 좋습니다.
+          "name"이라고 적힌 상자에 "철수"를 넣는 그림을 상상해보세요.
+        </aside>
+      </section>
+
+      <!-- 4. 변수 만들기 -->
+      <section>
+        <h2>변수 만들기</h2>
+        <pre><code class="language-python" data-trim>
+# 이름표 = 값
+name = "파이썬"
+age = 15
+height = 165.5
+is_student = True
+        </code></pre>
+        <p class="fragment"><code>=</code>는 "같다"가 아니라 <strong>"넣는다"</strong>는 뜻!</p>
+        <div class="fragment warning-box">
+          수학에서 = 은 "같다"지만,<br>
+          파이썬에서 = 은 "오른쪽 값을 왼쪽 상자에 넣어라"
+        </div>
+        <aside class="notes">
+          = 기호의 의미 차이를 강조합니다. 이건 정말 중요한 개념입니다.
+          "같다"는 ==으로 나중에 배울 거라고 미리 언급해도 좋습니다.
+        </aside>
+      </section>
+
+      <!-- 5. 변수 이름 규칙 -->
+      <section>
+        <h2>변수 이름 규칙</h2>
+        <div class="correct-box">
+          <strong>이렇게 지어!</strong>
+          <pre><code class="language-python">student_name = "영희"
+score1 = 95
+my_age = 15</code></pre>
+        </div>
+        <div class="fragment error-box">
+          <strong>이건 안 돼!</strong>
+          <pre><code class="language-python">1score = 95       # 숫자로 시작
+my name = "영희"  # 띄어쓰기
+for = 10          # 예약어</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          규칙: 영문/숫자/밑줄(_)만 사용, 숫자로 시작 불가, 의미 있는 이름!
+        </div>
+        <aside class="notes">
+          변수 이름은 의미 있게 짓는 습관이 중요합니다.
+          a, b, x 같은 이름보다 score, name 같은 이름이 좋다고 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 6. 변수 사용하기 -->
+      <section>
+        <h2>변수 사용하기</h2>
+        <pre><code class="language-python" data-trim>
+name = "민수"
+age = 14
+school = "중앙중학교"
+
+print(f"이름: {name}")
+print(f"나이: {age}살")
+print(f"학교: {school}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+이름: 민수
+나이: 14살
+학교: 중앙중학교
+        </code></pre>
+        <aside class="notes">
+          World 1에서 배운 f-string을 변수와 함께 사용합니다.
+          변수에 저장해두면 여러 번 사용할 수 있다는 점을 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 7. 변수 값 바꾸기 -->
+      <section>
+        <h2>변수 값 바꾸기</h2>
+        <pre><code class="language-python" data-trim>
+score = 80
+print(f"현재 점수: {score}")
+
+score = 95
+print(f"바뀐 점수: {score}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+현재 점수: 80
+바뀐 점수: 95
+        </code></pre>
+        <p class="fragment">같은 상자에 <strong>새 값을 넣으면</strong> 이전 값은 사라져!</p>
+        <aside class="notes">
+          변수의 값은 덮어씌워진다는 걸 강조합니다.
+          상자에 새 물건을 넣으면 이전 물건은 사라지는 것과 같습니다.
+        </aside>
+      </section>
+
+      <!-- 8. 변수로 계산하기 -->
+      <section>
+        <h2>변수로 계산하기</h2>
+        <pre><code class="language-python" data-trim>
+price = 1500       # 아이스크림 가격
+count = 3          # 개수
+
+total = price * count
+print(f"총 가격: {total}원")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+총 가격: 4500원
+        </code></pre>
+        <p class="fragment">변수끼리 계산한 결과를 <strong>새 변수에 저장</strong>할 수 있어!</p>
+        <aside class="notes">
+          변수의 진짜 힘은 계산에 있습니다.
+          가격이 바뀌면 price만 바꾸면 total도 자동으로 바뀐다고 설명하세요.
+        </aside>
+      </section>
+
+      <!-- 9. 누적 계산 -->
+      <section>
+        <h2>변수 값 누적하기</h2>
+        <pre><code class="language-python" data-trim>
+money = 10000      # 용돈
+
+money = money - 3000   # 점심 3000원
+print(f"점심 후: {money}원")
+
+money = money - 2000   # 간식 2000원
+print(f"간식 후: {money}원")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+점심 후: 7000원
+간식 후: 5000원
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>money = money - 3000</code>은<br>
+          "money 상자에서 꺼내서 3000 빼고 다시 넣어"라는 뜻!
+        </div>
+        <aside class="notes">
+          money = money - 3000은 학생들이 처음에 헷갈려합니다.
+          = 이 "같다"가 아니라 "넣는다"라는 걸 다시 한번 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 10. Swap 문제 -->
+      <section>
+        <h2>두 변수 값 교환하기 (Swap)</h2>
+        <p>a에는 10, b에는 20이 들어있어.<br><strong>두 값을 바꾸고 싶어!</strong></p>
+        <div class="fragment error-box">
+          <strong>이러면 안 돼!</strong>
+          <pre><code class="language-python">a = 10
+b = 20
+a = b    # a = 20
+b = a    # b = 20 ???  (10이 사라졌어!)</code></pre>
+        </div>
+        <aside class="notes">
+          swap 문제를 먼저 "잘못된 방법"으로 보여주세요.
+          왜 안 되는지 학생들에게 물어보세요.
+        </aside>
+      </section>
+
+      <!-- 11. Swap 해결 -->
+      <section>
+        <h2>Swap: 임시 상자를 써!</h2>
+        <pre><code class="language-python" data-trim>
+a = 10
+b = 20
+
+temp = a     # 임시 상자에 a 보관
+a = b        # a에 b 값 넣기
+b = temp     # b에 임시 상자 값 넣기
+
+print(f"a = {a}, b = {b}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+a = 20, b = 10
+        </code></pre>
+        <div class="fragment analogy-card">
+          <p>🥤 컵 두 개의 음료를 바꾸려면?<br><strong>빈 컵(temp)</strong>이 하나 더 필요해!</p>
+        </div>
+        <aside class="notes">
+          음료수 컵 비유가 효과적입니다. 콜라와 사이다를 바꾸려면 빈 컵이 필요하듯이요.
+        </aside>
+      </section>
+
+      <!-- 12. 파이썬 트릭 -->
+      <section>
+        <h2>이렇게도 할 수 있어!</h2>
+        <h3>파이썬만의 특별한 swap</h3>
+        <pre><code class="language-python" data-trim>
+a = 10
+b = 20
+
+a, b = b, a   # 파이썬 마법!
+
+print(f"a = {a}, b = {b}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+a = 20, b = 10
+        </code></pre>
+        <div class="fragment tip-box">
+          파이썬은 <code>a, b = b, a</code> 한 줄로 swap이 가능해!<br>
+          다른 언어에는 없는 파이썬만의 멋진 기능이야
+        </div>
+        <aside class="notes">
+          파이썬의 동시 할당(simultaneous assignment)입니다.
+          다만 temp를 쓰는 방법도 이해해야 한다고 강조하세요 - 다른 언어에서는 필수이고,
+          사고력 문제에서도 자주 나옵니다.
+        </aside>
+      </section>
+
+      <!-- 13. 여러 변수 한 번에 -->
+      <section>
+        <h2>여러 변수 한 번에 만들기</h2>
+        <pre><code class="language-python" data-trim>
+# 한 줄에 여러 변수!
+x, y, z = 1, 2, 3
+print(f"x={x}, y={y}, z={z}")
+
+# 같은 값으로 여러 변수
+a = b = c = 0
+print(f"a={a}, b={b}, c={c}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+x=1, y=2, z=3
+a=0, b=0, c=0
+        </code></pre>
+        <aside class="notes">
+          다중 할당은 코드를 간결하게 만들어줍니다.
+          하지만 가독성을 위해 남용하지 않는 것이 좋다고 안내하세요.
+        </aside>
+      </section>
+
+      <!-- 14. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">용돈 계산기를 만들어 봐!</p>
+          <br>
+          <ol style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">money 변수에 용돈 넣기</li>
+            <li class="fragment">쓴 만큼 빼면서 잔액 출력하기</li>
+            <li class="fragment">보너스: 3개 물건의 가격과 수량으로 총액 계산</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          3분 타이머. 실생활과 연결된 예제가 동기부여에 효과적입니다.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>정의 안 한 변수 사용</strong>
+          <pre><code class="language-python">print(score)  # score를 만든 적이 없어!</code></pre>
+          <code>NameError: name 'score' is not defined</code>
+        </div>
+        <div class="fragment error-box">
+          <strong>대소문자가 달라!</strong>
+          <pre><code class="language-python">Name = "철수"
+print(name)    # Name ≠ name</code></pre>
+          <code>NameError: name 'name' is not defined</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>변수 이름은 대소문자를 구분해!</strong><br>
+          Name, name, NAME 은 모두 다른 변수야
+        </div>
+        <aside class="notes">
+          NameError는 변수를 만들기 전에 사용하거나, 이름을 잘못 쳤을 때 발생합니다.
+          대소문자 구분은 초보자가 자주 실수하는 부분입니다.
+        </aside>
+      </section>
+
+      <!-- 16. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>변수 = 값</code>으로 데이터를 저장한다</li>
+          <li class="fragment"><code>=</code>은 "같다"가 아니라 "넣는다"</li>
+          <li class="fragment">변수끼리 계산해서 새 변수에 저장할 수 있다</li>
+          <li class="fragment">swap은 <code>temp</code> 또는 <code>a, b = b, a</code></li>
+          <li class="fragment">변수 이름은 의미 있게, 대소문자 구분!</li>
+        </ul>
+        <aside class="notes">
+          체크리스트를 하나씩 확인하며 복습합니다.
+        </aside>
+      </section>
+
+      <!-- 17. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>의미 있는 변수명!</strong><br>
+          <code>a = 1500</code>보다 <code>price = 1500</code>이 훨씬 읽기 좋아
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>print()로 확인!</strong><br>
+          변수에 뭐가 들어있는지 모르겠으면 <code>print()</code>로 찍어봐
+        </div>
+        <div class="fragment tip-box">
+          <strong>파이썬 swap 마법!</strong><br>
+          <code>a, b = b, a</code> — 외워두면 정말 편해!
+        </div>
+        <aside class="notes">
+          의미 있는 변수명은 나중에 코드가 길어질수록 중요해집니다.
+          디버깅의 첫 번째 도구는 print()라고 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 18. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>변수의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 2 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>생각하는 힘을 키우는 파이썬 기초 with pythink2 (강의안)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.2em;
+      font-weight: 900;
+      color: #1a1a2e;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .header .subtitle {
+      font-size: 1.1em;
+      color: #666;
+      font-weight: 300;
+      margin-top: 0.5em;
+    }
+
+    .header .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #6c63ff, #764ba2);
+      color: white;
+      padding: 0.3em 1em;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 700;
+      margin-top: 1em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .card:nth-child(1)::before { background: linear-gradient(90deg, #43a047, #66bb6a); }
+    .card:nth-child(2)::before { background: linear-gradient(90deg, #1976d2, #42a5f5); }
+    .card:nth-child(3)::before { background: linear-gradient(90deg, #f57c00, #ffb74d); }
+    .card:nth-child(4)::before { background: linear-gradient(90deg, #e53935, #ef5350); }
+    .card:nth-child(5)::before { background: linear-gradient(90deg, #8e24aa, #ab47bc); }
+    .card:nth-child(6)::before { background: linear-gradient(90deg, #00897b, #26a69a); }
+    .card:nth-child(7)::before { background: linear-gradient(90deg, #5c6bc0, #7986cb); }
+    .card:nth-child(8)::before { background: linear-gradient(90deg, #d81b60, #ec407a); }
+
+    .card-emoji {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+
+    .card-world {
+      font-size: 0.8em;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card h2 {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 0.3em 0;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      color: #666;
+      line-height: 1.5;
+      margin-top: 0.5em;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      margin-top: 1em;
+    }
+
+    .card-tags span {
+      display: inline-block;
+      background: #f0f0f5;
+      color: #555;
+      padding: 0.2em 0.6em;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: 500;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.5em;
+      color: #ccc;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .card:hover .card-arrow {
+      color: #6c63ff;
+      transform: translateX(4px);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 700px) {
+      .header h1 { font-size: 1.5em; }
+      .grid { grid-template-columns: 1fr; }
+      body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>생각하는 힘을 키우는 파이썬 기초<br>with pythink2</h1>
+    <p class="subtitle">교실에서 바로 쓸 수 있는 강의안 슬라이드</p>
+    <span class="badge">reveal.js 기반 - 전체화면 F키</span>
+  </div>
+
+  <div class="grid">
+
+    <a href="world1-print.html" class="card">
+      <div class="card-emoji">🖨️</div>
+      <div class="card-world">World 1</div>
+      <h2>출력의 세계</h2>
+      <p>파이썬이 말하는 방법! print()로 세상에 인사하기</p>
+      <div class="card-tags">
+        <span>print()</span>
+        <span>따옴표</span>
+        <span>\n</span>
+        <span>f-string</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world2-variable.html" class="card">
+      <div class="card-emoji">📦</div>
+      <div class="card-world">World 2</div>
+      <h2>변수의 세계</h2>
+      <p>데이터를 담는 상자, 변수를 알아보자</p>
+      <div class="card-tags">
+        <span>변수</span>
+        <span>할당</span>
+        <span>swap</span>
+        <span>계산</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world3-input.html" class="card">
+      <div class="card-emoji">🎤</div>
+      <div class="card-world">World 3</div>
+      <h2>입력의 세계</h2>
+      <p>사용자의 말을 듣는 귀, input()과 형 변환</p>
+      <div class="card-tags">
+        <span>input()</span>
+        <span>int()</span>
+        <span>float()</span>
+        <span>형변환</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world4-operator.html" class="card">
+      <div class="card-emoji">🔧</div>
+      <div class="card-world">World 4</div>
+      <h2>연산자의 세계</h2>
+      <p>계산의 도구 상자를 열어보자</p>
+      <div class="card-tags">
+        <span>//</span>
+        <span>%</span>
+        <span>**</span>
+        <span>round()</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world5a-condition.html" class="card">
+      <div class="card-emoji">🚦</div>
+      <div class="card-world">World 5a</div>
+      <h2>조건문의 세계</h2>
+      <p>갈림길의 표지판, if-elif-else</p>
+      <div class="card-tags">
+        <span>if</span>
+        <span>elif</span>
+        <span>else</span>
+        <span>비교연산자</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world5b-string.html" class="card">
+      <div class="card-emoji">🚂</div>
+      <div class="card-world">World 5b</div>
+      <h2>문자열의 세계</h2>
+      <p>글자들이 줄 선 기차, 인덱싱과 슬라이싱</p>
+      <div class="card-tags">
+        <span>인덱싱</span>
+        <span>슬라이싱</span>
+        <span>메서드</span>
+        <span>[::-1]</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world6-loop.html" class="card">
+      <div class="card-emoji">🔄</div>
+      <div class="card-world">World 6</div>
+      <h2>반복문의 세계</h2>
+      <p>같은 일을 자동으로! for와 while의 힘</p>
+      <div class="card-tags">
+        <span>for</span>
+        <span>while</span>
+        <span>range()</span>
+        <span>중첩 반복</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="world7-boss.html" class="card">
+      <div class="card-emoji">🏆</div>
+      <div class="card-world">World 7</div>
+      <h2>보스전</h2>
+      <p>배운 무기를 모두 꺼내는 종합 도전!</p>
+      <div class="card-tags">
+        <span>종합</span>
+        <span>분해</span>
+        <span>변수 추적</span>
+        <span>디버깅</span>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <p>
+      <a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a>에서 직접 문제를 풀어보세요!
+    </p>
+    <p style="margin-top:0.5em;">슬라이드: reveal.js | 단축키: F(전체화면), S(발표자노트), ESC(슬라이드 목록)</p>
+  </div>
+
+</body>
+</html>

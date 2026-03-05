@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 3: 입력의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🎤</span>
+        <h1>입력의 세계</h1>
+        <p class="subtitle">World 3 — 사용자의 말을 듣는 귀, input()</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          이제 일방적으로 출력만 하는 게 아니라, 사용자에게 입력을 받는 방법을 배웁니다.
+          대화형 프로그램의 시작입니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>input()</strong>으로 사용자에게 값 받기</li>
+          <li class="fragment">input()이 돌려주는 값의 <strong>타입</strong> 이해하기</li>
+          <li class="fragment"><strong>형 변환</strong>으로 숫자 계산 가능하게 만들기</li>
+        </ul>
+        <aside class="notes">
+          input()의 핵심은 "항상 문자열을 반환한다"는 것입니다.
+          이 개념을 확실히 이해시키는 것이 이번 수업의 목표입니다.
+        </aside>
+      </section>
+
+      <!-- 3. input() 비유 -->
+      <section>
+        <h2>input()은 뭘까?</h2>
+        <div class="analogy-card">
+          <p>🎤 input()은 <strong>마이크</strong>야!<br>사용자가 말하면 그걸 받아 적는 거지</p>
+        </div>
+        <p class="fragment" style="margin-top:1em;">print()가 <strong>스피커</strong>라면,<br>input()은 <strong>마이크</strong>야!</p>
+        <aside class="notes">
+          print()=스피커, input()=마이크 비유를 사용합니다.
+          프로그램이 사용자와 대화하려면 둘 다 필요합니다.
+        </aside>
+      </section>
+
+      <!-- 4. 기본 input() -->
+      <section>
+        <h2>input() 기본 사용법</h2>
+        <pre><code class="language-python" data-trim>
+name = input("이름이 뭐야? ")
+print(f"안녕, {name}!")
+        </code></pre>
+        <div class="fragment">
+          <p>실행하면:</p>
+          <pre><code class="language-text" data-trim>
+이름이 뭐야? 민수
+안녕, 민수!
+          </code></pre>
+        </div>
+        <div class="fragment tip-box">
+          input() 안에 쓴 글자가 <strong>질문(프롬프트)</strong>으로 먼저 나와!
+        </div>
+        <aside class="notes">
+          input()의 괄호 안 문자열은 프롬프트입니다.
+          사용자가 타이핑하고 엔터를 치면 그 값이 변수에 저장됩니다.
+        </aside>
+      </section>
+
+      <!-- 5. input()의 비밀 -->
+      <section>
+        <h2>input()의 비밀</h2>
+        <h3>항상 <span class="keyword">문자열</span>을 돌려줘!</h3>
+        <pre><code class="language-python" data-trim>
+age = input("나이가 몇 살이야? ")
+print(type(age))
+print(age)
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+나이가 몇 살이야? 15
+&lt;class 'str'&gt;
+15
+        </code></pre>
+        <div class="fragment warning-box">
+          15를 입력했는데... 숫자 15가 아니라 문자열 "15"야!
+        </div>
+        <aside class="notes">
+          이것이 이번 수업의 가장 핵심적인 개념입니다.
+          input()은 무조건 문자열(str)을 반환합니다.
+        </aside>
+      </section>
+
+      <!-- 6. 문자열 + 문자열 -->
+      <section>
+        <h2>문자열 "덧셈"의 함정</h2>
+        <pre><code class="language-python" data-trim>
+a = input("첫 번째 수: ")   # "3" (문자열!)
+b = input("두 번째 수: ")   # "5" (문자열!)
+
+print(a + b)   # 뭐가 나올까?
+        </code></pre>
+        <div class="fragment error-box">
+          <strong>예상: 8</strong><br>
+          <strong>실제: 35</strong> (문자열 "3" + "5" = "35")
+        </div>
+        <p class="fragment" style="font-size:1.3em;"><strong>문자열끼리 +는 이어붙이기야!</strong></p>
+        <aside class="notes">
+          학생들에게 먼저 결과를 예측해보게 하세요.
+          "35"가 나오면 큰 반응이 옵니다. 이 충격을 활용하세요!
+        </aside>
+      </section>
+
+      <!-- 7. 형 변환 -->
+      <section>
+        <h2>해결법: 형 변환!</h2>
+        <pre><code class="language-python" data-trim>
+a = input("첫 번째 수: ")   # "3"
+b = input("두 번째 수: ")   # "5"
+
+# 문자열 → 정수로 변환!
+a = int(a)
+b = int(b)
+
+print(a + b)   # 8 (진짜 덧셈!)
+        </code></pre>
+        <div class="fragment analogy-card">
+          <p>📦➡️🔢 <code>int()</code>는 문자열 상자를 열어서<br><strong>숫자로 바꿔주는 변환기</strong>야!</p>
+        </div>
+        <aside class="notes">
+          int()는 integer(정수)의 약자입니다.
+          문자열을 정수로 변환합니다.
+        </aside>
+      </section>
+
+      <!-- 8. 한 줄로 쓰기 -->
+      <section>
+        <h2>한 줄로 깔끔하게!</h2>
+        <pre><code class="language-python" data-trim>
+# 두 줄로 쓰기
+a = input("수 입력: ")
+a = int(a)
+
+# 한 줄로 줄이기!
+a = int(input("수 입력: "))
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>int(input(...))</code> 패턴은 정말 자주 쓰여!<br>
+          "입력받아서 바로 정수로 바꿔라"는 뜻이야
+        </div>
+        <aside class="notes">
+          이 패턴은 외울 정도로 자주 씁니다.
+          안에서 바깥으로 읽으세요: input()으로 받고 → int()로 변환.
+        </aside>
+      </section>
+
+      <!-- 9. 다양한 형 변환 -->
+      <section>
+        <h2>다양한 형 변환</h2>
+        <pre><code class="language-python" data-trim>
+# 정수로 변환
+age = int(input("나이: "))         # 15
+
+# 실수로 변환
+height = float(input("키: "))     # 165.5
+
+# 문자열로 변환 (잘 안 쓰지만)
+text = str(100)                    # "100"
+        </code></pre>
+        <table class="fragment" style="margin:1em auto; font-size:0.9em;">
+          <tr><th>함수</th><th>변환</th><th>예시</th></tr>
+          <tr><td><code>int()</code></td><td>정수로</td><td>"15" → 15</td></tr>
+          <tr><td><code>float()</code></td><td>실수로</td><td>"3.14" → 3.14</td></tr>
+          <tr><td><code>str()</code></td><td>문자열로</td><td>100 → "100"</td></tr>
+        </table>
+        <aside class="notes">
+          int, float, str 세 가지 형 변환을 정리합니다.
+          float은 소수점이 있는 숫자를 받을 때 사용합니다.
+        </aside>
+      </section>
+
+      <!-- 10. 실전 예제: BMI 계산기 -->
+      <section>
+        <h2>실전 예제: BMI 계산기</h2>
+        <pre><code class="language-python" data-trim>
+height = float(input("키(cm): "))
+weight = float(input("몸무게(kg): "))
+
+# cm → m로 변환
+height_m = height / 100
+
+# BMI = 몸무게 / 키²
+bmi = weight / (height_m ** 2)
+
+print(f"BMI: {round(bmi, 1)}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+키(cm): 165
+몸무게(kg): 60
+BMI: 22.0
+        </code></pre>
+        <aside class="notes">
+          실생활 예제로 input()과 형 변환을 복습합니다.
+          float, **, round() 등이 자연스럽게 쓰이는 것을 보여주세요.
+        </aside>
+      </section>
+
+      <!-- 11. 여러 값 한 번에 입력 -->
+      <section>
+        <h2>이렇게도 할 수 있어!</h2>
+        <h3>여러 값 한 번에 입력받기</h3>
+        <pre><code class="language-python" data-trim>
+# split()으로 띄어쓰기 기준 분리
+a, b = input("두 수 입력(공백): ").split()
+a = int(a)
+b = int(b)
+
+print(f"{a} + {b} = {a + b}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+두 수 입력(공백): 3 5
+3 + 5 = 8
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>split()</code>은 띄어쓰기 기준으로 문자열을 나눠주는 기능이야
+        </div>
+        <aside class="notes">
+          split()은 나중에 문자열 파트에서 자세히 배우지만, 미리 맛보기로 보여줍니다.
+          이 패턴도 자주 사용됩니다.
+        </aside>
+      </section>
+
+      <!-- 12. map으로 한 번에 변환 -->
+      <section>
+        <h2>더 깔끔한 방법: map()</h2>
+        <pre><code class="language-python" data-trim>
+# map으로 한 번에 int 변환!
+a, b = map(int, input("두 수: ").split())
+
+print(f"{a} + {b} = {a + b}")
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>map(int, ...)</code>은 "다 int로 바꿔!"라는 뜻<br>
+          여러 숫자를 한 번에 입력받을 때 최고!
+        </div>
+        <aside class="notes">
+          map()은 고급 패턴이지만, 알고리즘 문제에서 자주 나오므로 소개합니다.
+          외우기 어려우면 한 줄씩 변환하는 방법을 써도 괜찮다고 안내하세요.
+        </aside>
+      </section>
+
+      <!-- 13. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">간단한 계산기를 만들어 봐!</p>
+          <br>
+          <ol style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">두 수를 input()으로 입력받기</li>
+            <li class="fragment">int()로 변환 후 +, -, *, / 결과 모두 출력</li>
+            <li class="fragment">보너스: 이름도 입력받아서 "OO님의 계산 결과" 형태로!</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          3분 타이머. 빠른 학생에게는 보너스 과제를 안내하세요.
+        </aside>
+      </section>
+
+      <!-- 14. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>int() 없이 계산하려고!</strong>
+          <pre><code class="language-python">a = input("수: ")    # "10" (문자열)
+print(a + 5)          # TypeError!</code></pre>
+          <code>TypeError: can only concatenate str to str</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>반드시 int()로 변환 후 계산!</strong>
+          <pre><code class="language-python">a = int(input("수: "))
+print(a + 5)          # 15</code></pre>
+        </div>
+        <aside class="notes">
+          TypeError는 타입이 맞지 않을 때 발생합니다.
+          문자열과 숫자는 + 연산이 안 된다는 것을 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>숫자가 아닌 걸 int()에 넣으면?</strong>
+          <pre><code class="language-python">age = int(input("나이: "))
+# 사용자가 "열다섯"이라고 입력하면?</code></pre>
+          <code>ValueError: invalid literal for int()</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>int()에는 반드시 숫자 형태의 문자열만!</strong><br>
+          "15" → OK, "열다섯" → 에러, "15.5" → 에러 (float 사용)
+        </div>
+        <aside class="notes">
+          ValueError는 값의 형태가 맞지 않을 때 발생합니다.
+          int("15.5")도 에러가 나는데, 이때는 float()를 쓰거나 int(float("15.5"))를 써야 합니다.
+        </aside>
+      </section>
+
+      <!-- 16. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>input()</code>으로 사용자에게 값을 받을 수 있다</li>
+          <li class="fragment">input()은 <strong>항상 문자열</strong>을 돌려준다</li>
+          <li class="fragment"><code>int()</code>로 정수, <code>float()</code>로 실수 변환</li>
+          <li class="fragment"><code>int(input(...))</code> 패턴이 가장 많이 쓰인다</li>
+          <li class="fragment"><code>split()</code>으로 여러 값을 한 번에 입력받을 수 있다</li>
+        </ul>
+        <aside class="notes">
+          핵심: input()은 항상 문자열! 계산하려면 변환 필수!
+        </aside>
+      </section>
+
+      <!-- 17. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>int(input()) 외워!</strong><br>
+          숫자를 입력받을 땐 무조건 이 패턴. 가장 자주 쓰는 코드야
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>에러 메시지를 읽어봐!</strong><br>
+          TypeError → 타입(자료형)이 안 맞아<br>
+          ValueError → 값의 형태가 안 맞아
+        </div>
+        <div class="fragment tip-box">
+          <strong>프롬프트에 힌트를 줘!</strong><br>
+          <code>input("나이(숫자): ")</code> 이렇게 쓰면 사용자가 덜 틀려
+        </div>
+        <aside class="notes">
+          사용자 친화적인 프롬프트를 작성하는 습관도 중요합니다.
+        </aside>
+      </section>
+
+      <!-- 18. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>입력의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 3 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

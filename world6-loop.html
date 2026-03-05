@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 6: 반복문의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🔄</span>
+        <h1>반복문의 세계</h1>
+        <p class="subtitle">World 6 — 같은 일을 자동으로!</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          반복문은 프로그래밍의 진정한 힘입니다.
+          컴퓨터가 사람보다 잘하는 것: 같은 일을 지치지 않고 반복하는 것!
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>for문</strong>으로 정해진 횟수만큼 반복하기</li>
+          <li class="fragment"><strong>while문</strong>으로 조건이 맞을 때까지 반복하기</li>
+          <li class="fragment"><strong>중첩 반복</strong>과 패턴 만들기</li>
+        </ul>
+        <aside class="notes">
+          for와 while의 차이, 그리고 중첩 반복까지 다룹니다.
+        </aside>
+      </section>
+
+      <!-- 3. 비유 -->
+      <section>
+        <h2>반복문은 뭘까?</h2>
+        <div class="analogy-card">
+          <p>📋 반복문은 <strong>복사기</strong>야!<br>같은 일을 자동으로 여러 번 해줘</p>
+        </div>
+        <div class="fragment" style="margin-top:1em;">
+          <p>반복문이 없다면...?</p>
+          <pre><code class="language-python" data-trim>
+print("안녕!")
+print("안녕!")
+print("안녕!")
+print("안녕!")
+print("안녕!")
+# 100번이면...? 😱
+          </code></pre>
+        </div>
+        <aside class="notes">
+          반복문 없이 100번 출력하려면 print()를 100번 써야 합니다.
+          이런 비효율을 해결하는 것이 반복문입니다.
+        </aside>
+      </section>
+
+      <!-- 4. for 기본 -->
+      <section>
+        <h2>for문 기본 구조</h2>
+        <pre><code class="language-python" data-trim>
+for i in range(5):
+    print(f"{i}번째 안녕!")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+0번째 안녕!
+1번째 안녕!
+2번째 안녕!
+3번째 안녕!
+4번째 안녕!
+        </code></pre>
+        <ul class="fragment">
+          <li><code>range(5)</code> = 0, 1, 2, 3, 4 (5개)</li>
+          <li><code>i</code>는 매번 바뀌는 <strong>반복 변수</strong></li>
+          <li>들여쓰기된 부분이 <strong>반복되는 코드</strong></li>
+        </ul>
+        <aside class="notes">
+          range(5)는 0부터 4까지 5개의 숫자를 만듭니다.
+          i는 관례적으로 사용하는 반복 변수 이름입니다.
+        </aside>
+      </section>
+
+      <!-- 5. range() 상세 -->
+      <section>
+        <h2>range()의 3가지 형태</h2>
+        <pre><code class="language-python" data-trim>
+# range(끝) — 0부터 끝-1까지
+for i in range(3):
+    print(i)          # 0, 1, 2
+
+# range(시작, 끝) — 시작부터 끝-1까지
+for i in range(1, 4):
+    print(i)          # 1, 2, 3
+
+# range(시작, 끝, 간격) — 간격만큼 건너뛰기
+for i in range(0, 10, 2):
+    print(i)          # 0, 2, 4, 6, 8
+        </code></pre>
+        <div class="fragment warning-box">
+          <strong>끝 숫자는 포함 안 돼!</strong><br>
+          슬라이싱이랑 같은 규칙이야
+        </div>
+        <aside class="notes">
+          range()도 슬라이싱과 같이 끝 값이 포함되지 않습니다.
+          이 일관성을 강조하세요. 파이썬의 설계 원칙입니다.
+        </aside>
+      </section>
+
+      <!-- 6. for 실전: 합계 -->
+      <section>
+        <h2>실전! 1부터 100까지 합</h2>
+        <pre><code class="language-python" data-trim>
+total = 0
+
+for i in range(1, 101):
+    total = total + i
+
+print(f"1~100 합: {total}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+1~100 합: 5050
+        </code></pre>
+        <div class="fragment tip-box">
+          <strong>패턴:</strong> 누적 변수(total) = 0으로 시작<br>
+          반복문 안에서 계속 더하기!
+        </div>
+        <aside class="notes">
+          가우스의 일화를 잠깐 소개해도 좋습니다.
+          total += i 로 줄여 쓸 수 있다는 것도 알려주세요.
+        </aside>
+      </section>
+
+      <!-- 7. 문자열 반복 -->
+      <section>
+        <h2>문자열도 반복할 수 있어!</h2>
+        <pre><code class="language-python" data-trim>
+name = "Python"
+
+for char in name:
+    print(char, end=" ")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+P y t h o n
+        </code></pre>
+        <div class="fragment tip-box">
+          for문은 range()뿐 아니라 <strong>문자열</strong>의 글자도<br>
+          하나씩 꺼내줘!
+        </div>
+        <aside class="notes">
+          for문은 반복 가능한(iterable) 모든 것에 사용할 수 있습니다.
+          문자열도 그 중 하나입니다.
+        </aside>
+      </section>
+
+      <!-- 8. while 기본 -->
+      <section>
+        <h2>while문: 조건이 맞을 때까지</h2>
+        <pre><code class="language-python" data-trim>
+count = 0
+
+while count < 5:
+    print(f"count = {count}")
+    count += 1    # count = count + 1
+
+print("끝!")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+count = 0
+count = 1
+count = 2
+count = 3
+count = 4
+끝!
+        </code></pre>
+        <aside class="notes">
+          while문은 조건이 True인 동안 계속 반복합니다.
+          조건이 False가 되면 반복을 멈춥니다.
+        </aside>
+      </section>
+
+      <!-- 9. for vs while -->
+      <section>
+        <h2>for vs while 언제 쓸까?</h2>
+        <div style="display:flex; gap:1em; align-items:stretch;">
+          <div style="flex:1; background:#e3f2fd; border-radius:12px; padding:1.2em;">
+            <h3 style="color:#1976d2;">for문</h3>
+            <p><strong>횟수가 정해진</strong> 반복</p>
+            <ul style="font-size:0.85em;">
+              <li>5번 반복</li>
+              <li>1~100까지</li>
+              <li>리스트 순회</li>
+            </ul>
+          </div>
+          <div style="flex:1; background:#fce4ec; border-radius:12px; padding:1.2em;">
+            <h3 style="color:#e53935;">while문</h3>
+            <p><strong>조건이 정해진</strong> 반복</p>
+            <ul style="font-size:0.85em;">
+              <li>맞출 때까지</li>
+              <li>0이 될 때까지</li>
+              <li>사용자가 끝낼 때까지</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fragment tip-box" style="margin-top:1em;">
+          "몇 번?"이 정해져 있으면 <strong>for</strong><br>
+          "언제까지?"가 정해져 있으면 <strong>while</strong>
+        </div>
+        <aside class="notes">
+          for와 while의 선택 기준을 명확히 해줍니다.
+          대부분의 경우 for문을 더 많이 사용합니다.
+        </aside>
+      </section>
+
+      <!-- 10. while 실전: 숫자 맞추기 -->
+      <section>
+        <h2>실전! 숫자 맞추기 게임</h2>
+        <pre><code class="language-python" data-trim>
+answer = 7
+guess = 0
+
+while guess != answer:
+    guess = int(input("숫자를 맞춰봐! "))
+
+    if guess > answer:
+        print("너무 커!")
+    elif guess < answer:
+        print("너무 작아!")
+
+print("정답! 🎉")
+        </code></pre>
+        <div class="fragment tip-box">
+          while문은 "맞출 때까지" 같은 상황에 딱!
+        </div>
+        <aside class="notes">
+          실제로 돌려보면 학생들이 매우 좋아합니다.
+          while문의 실용성을 체감하는 예제입니다.
+        </aside>
+      </section>
+
+      <!-- 11. break와 continue -->
+      <section>
+        <h2>break와 continue</h2>
+        <pre><code class="language-python" data-trim>
+# break: 반복 즉시 탈출!
+for i in range(10):
+    if i == 5:
+        break
+    print(i)         # 0, 1, 2, 3, 4
+
+# continue: 이번만 건너뛰기!
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)         # 0, 1, 3, 4
+        </code></pre>
+        <ul class="fragment">
+          <li><code>break</code> = "그만!" (반복 전체 종료)</li>
+          <li><code>continue</code> = "패스!" (이번만 건너뛰기)</li>
+        </ul>
+        <aside class="notes">
+          break는 반복문을 완전히 빠져나옵니다.
+          continue는 현재 반복만 건너뛰고 다음 반복으로 넘어갑니다.
+        </aside>
+      </section>
+
+      <!-- 12. 중첩 반복문 -->
+      <section>
+        <h2>중첩 반복: 반복 안의 반복</h2>
+        <pre><code class="language-python" data-trim>
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i}x{j}={i*j}", end="  ")
+    print()    # 줄바꿈
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+1x1=1  1x2=2  1x3=3
+2x1=2  2x2=4  2x3=6
+3x1=3  3x2=6  3x3=9
+        </code></pre>
+        <div class="fragment tip-box">
+          바깥 for(행)가 1번 돌 때, 안쪽 for(열)가 전부 돌아!<br>
+          시계의 분침(바깥)과 초침(안쪽)처럼!
+        </div>
+        <aside class="notes">
+          중첩 반복은 시계 비유가 효과적입니다.
+          바깥 반복이 "분침", 안쪽 반복이 "초침"입니다.
+          분침이 1칸 갈 때 초침은 60칸을 갑니다.
+        </aside>
+      </section>
+
+      <!-- 13. 패턴 출력: 별 피라미드 -->
+      <section>
+        <h2>패턴 만들기: 별 피라미드</h2>
+        <pre><code class="language-python" data-trim>
+n = 5
+for i in range(1, n + 1):
+    print("★" * i)
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+★
+★★
+★★★
+★★★★
+★★★★★
+        </code></pre>
+        <div class="fragment">
+          <h3>뒤집기!</h3>
+          <pre><code class="language-python" data-trim>
+for i in range(n, 0, -1):
+    print("★" * i)
+          </code></pre>
+        </div>
+        <aside class="notes">
+          문자열 곱하기와 반복문을 결합한 패턴 출력입니다.
+          range(n, 0, -1)은 역순 반복입니다.
+        </aside>
+      </section>
+
+      <!-- 14. 패턴: 가운데 정렬 피라미드 -->
+      <section>
+        <h2>가운데 정렬 피라미드</h2>
+        <pre><code class="language-python" data-trim>
+n = 5
+for i in range(1, n + 1):
+    spaces = " " * (n - i)
+    stars = "★" * (2 * i - 1)
+    print(spaces + stars)
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+    ★
+   ★★★
+  ★★★★★
+ ★★★★★★★
+★★★★★★★★★
+        </code></pre>
+        <div class="fragment tip-box">
+          핵심: 공백 수 = n - i, 별 수 = 2i - 1
+        </div>
+        <aside class="notes">
+          가운데 정렬 피라미드는 공백과 별의 관계를 파악하는 것이 핵심입니다.
+          표를 그려서 규칙을 찾게 해보세요.
+        </aside>
+      </section>
+
+      <!-- 15. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">구구단 출력기!</p>
+          <br>
+          <ol style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">단 수를 입력받기</li>
+            <li class="fragment">for문으로 그 단의 구구단 출력</li>
+            <li class="fragment">보너스: 2단~9단 전체 출력 (중첩 반복)</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          3분 타이머. 구구단은 for문의 대표적 예제입니다.
+        </aside>
+      </section>
+
+      <!-- 16. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>range() off-by-one!</strong>
+          <pre><code class="language-python"># 1부터 5까지 출력하고 싶은데...
+for i in range(5):
+    print(i)    # 0, 1, 2, 3, 4 (0부터 시작!)</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>1부터 시작하려면 range(1, 6)!</strong>
+          <pre><code class="language-python">for i in range(1, 6):
+    print(i)    # 1, 2, 3, 4, 5</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          <code>range(1, n+1)</code> → 1부터 n까지!
+        </div>
+        <aside class="notes">
+          off-by-one 에러는 프로그래밍에서 가장 흔한 버그 중 하나입니다.
+          "range(a, b)에서 b는 포함 안 된다!"를 계속 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 17. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>무한 루프!</strong>
+          <pre><code class="language-python">count = 0
+while count < 5:
+    print(count)
+    # count += 1 을 깜빡하면... 영원히 0 출력!</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>while문에서는 반드시 탈출 조건을 만들어!</strong>
+          <pre><code class="language-python">count = 0
+while count < 5:
+    print(count)
+    count += 1    # 이거 잊으면 안 돼!</code></pre>
+        </div>
+        <div class="fragment warning-box">
+          무한 루프에 빠지면? Ctrl+C로 강제 종료!
+        </div>
+        <aside class="notes">
+          while문에서 변수를 갱신하지 않으면 무한 루프에 빠집니다.
+          Ctrl+C가 탈출 방법이라는 것을 반드시 알려주세요.
+        </aside>
+      </section>
+
+      <!-- 18. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>for i in range(n)</code>: n번 반복 (0부터)</li>
+          <li class="fragment"><code>range(시작, 끝)</code>: 끝은 미포함!</li>
+          <li class="fragment"><code>while 조건:</code> 조건이 True인 동안 반복</li>
+          <li class="fragment"><code>break</code> 탈출, <code>continue</code> 건너뛰기</li>
+          <li class="fragment">중첩 반복: 바깥(행) x 안쪽(열)</li>
+        </ul>
+        <aside class="notes">
+          핵심 체크리스트를 확인합니다.
+        </aside>
+      </section>
+
+      <!-- 19. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>range(a, b)에서 b 미포함!</strong><br>
+          1~n까지 쓰고 싶으면 <code>range(1, n+1)</code>
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>while에서 탈출 조건 확인!</strong><br>
+          무한 루프 방지: 반복 변수 갱신 또는 break
+        </div>
+        <div class="fragment tip-box">
+          <strong>패턴 찾기!</strong><br>
+          표로 규칙을 정리하면 코드가 보여 (행번호, 공백수, 별수)
+        </div>
+        <aside class="notes">
+          패턴 출력 문제는 표를 그려서 규칙을 찾는 것이 핵심입니다.
+        </aside>
+      </section>
+
+      <!-- 20. 구구단 전체 (보너스) -->
+      <section>
+        <h2>보너스: 구구단 전체</h2>
+        <pre><code class="language-python" data-trim>
+for dan in range(2, 10):
+    print(f"--- {dan}단 ---")
+    for i in range(1, 10):
+        print(f"{dan} x {i} = {dan * i}")
+    print()
+        </code></pre>
+        <div class="fragment tip-box">
+          중첩 반복의 대표 예제!<br>
+          바깥(dan): 2~9단 / 안쪽(i): 1~9 곱하기
+        </div>
+        <aside class="notes">
+          구구단 전체 출력은 중첩 반복의 완벽한 예제입니다.
+        </aside>
+      </section>
+
+      <!-- 21. 누적 패턴 정리 -->
+      <section>
+        <h2>반복문 핵심 패턴</h2>
+        <pre><code class="language-python" data-trim>
+# 패턴 1: 누적 합
+total = 0
+for i in range(1, 11):
+    total += i
+
+# 패턴 2: 누적 문자열
+result = ""
+for char in "Hello":
+    result += char + "-"
+
+# 패턴 3: 카운팅
+count = 0
+for i in range(1, 101):
+    if i % 3 == 0:
+        count += 1
+        </code></pre>
+        <div class="fragment tip-box">
+          누적 합, 누적 문자열, 카운팅 — 이 세 패턴이 핵심!
+        </div>
+        <aside class="notes">
+          이 세 가지 패턴은 반복문에서 가장 기본이 되는 것들입니다.
+          모든 복잡한 반복문도 결국 이 패턴의 조합입니다.
+        </aside>
+      </section>
+
+      <!-- 22. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>반복문의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 6 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

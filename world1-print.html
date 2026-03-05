@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 1: 출력의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title slide -->
+      <section>
+        <span class="big-emoji">🖨️</span>
+        <h1>출력의 세계</h1>
+        <p class="subtitle">World 1 — print()로 세상에 인사하기</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          첫 번째 월드입니다. 파이썬의 가장 기본인 print()를 배웁니다.
+          학생들이 처음 코드를 실행하고 결과를 보는 경험이 중요합니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>print()</strong>로 화면에 글자 출력하기</li>
+          <li class="fragment"><strong>따옴표</strong>의 종류와 사용법 알기</li>
+          <li class="fragment"><strong>f-string</strong>으로 변수를 문장 속에 넣기</li>
+        </ul>
+        <aside class="notes">
+          하나씩 클릭하며 보여주세요. 오늘 수업이 끝나면 이 세 가지를 할 수 있게 됩니다.
+        </aside>
+      </section>
+
+      <!-- 3. print() 비유 -->
+      <section>
+        <h2>print()는 뭘까?</h2>
+        <div class="analogy-card">
+          <p>🗣️ print()는 <strong>파이썬이 말하는 방법</strong>이야!</p>
+        </div>
+        <p class="fragment" style="margin-top:1em;">우리가 말을 하려면 입을 열듯,<br>파이썬이 뭔가를 보여주려면 print()를 써야 해</p>
+        <aside class="notes">
+          비유를 통해 print()의 역할을 직관적으로 설명합니다.
+          "파이썬은 print()가 없으면 벙어리야"라고 표현해도 좋습니다.
+        </aside>
+      </section>
+
+      <!-- 4. 첫 번째 코드 -->
+      <section>
+        <h2>첫 번째 코드!</h2>
+        <pre><code class="language-python" data-trim>
+print("안녕, 파이썬!")
+        </code></pre>
+        <p class="fragment">실행 결과:</p>
+        <pre class="fragment"><code class="language-text" data-trim>
+안녕, 파이썬!
+        </code></pre>
+        <aside class="notes">
+          학생들에게 pythink2에서 직접 타이핑하게 하세요.
+          복사-붙여넣기가 아니라 직접 치는 것이 중요합니다.
+        </aside>
+      </section>
+
+      <!-- 5. 따옴표 종류 -->
+      <section>
+        <h2>따옴표의 종류</h2>
+        <pre><code class="language-python" data-trim>
+# 작은따옴표
+print('안녕하세요')
+
+# 큰따옴표
+print("안녕하세요")
+
+# 둘 다 똑같이 동작해!
+        </code></pre>
+        <div class="fragment tip-box">
+          작은따옴표든 큰따옴표든 결과는 같아! 편한 걸 골라 써
+        </div>
+        <aside class="notes">
+          작은따옴표와 큰따옴표의 차이가 없다는 것을 강조합니다.
+          다만 일관성 있게 사용하는 습관을 권장하세요.
+        </aside>
+      </section>
+
+      <!-- 6. 따옴표 안에 따옴표 -->
+      <section>
+        <h2>따옴표 안에 따옴표?</h2>
+        <pre><code class="language-python" data-trim>
+# 큰따옴표 안에 작은따옴표
+print("파이썬이 '안녕'이라고 했어")
+
+# 작은따옴표 안에 큰따옴표
+print('그는 "멋져"라고 말했다')
+        </code></pre>
+        <p class="fragment">바깥과 안쪽 따옴표를 <strong>다르게</strong> 쓰면 돼!</p>
+        <aside class="notes">
+          따옴표 중첩은 학생들이 자주 헷갈리는 부분입니다.
+          규칙은 간단합니다: 바깥과 안쪽을 다르게!
+        </aside>
+      </section>
+
+      <!-- 7. 여러 줄 출력: \n -->
+      <section>
+        <h2>줄 바꾸기: \n</h2>
+        <pre><code class="language-python" data-trim>
+print("첫째 줄\n둘째 줄\n셋째 줄")
+        </code></pre>
+        <p class="fragment">실행 결과:</p>
+        <pre class="fragment"><code class="language-text" data-trim>
+첫째 줄
+둘째 줄
+셋째 줄
+        </code></pre>
+        <div class="fragment analogy-card">
+          <p>\n은 <strong>엔터 키</strong>를 코드로 쓴 거야!</p>
+        </div>
+        <aside class="notes">
+          \n은 "new line"의 약자입니다. 역슬래시+n이 합쳐져서 줄바꿈 역할을 합니다.
+        </aside>
+      </section>
+
+      <!-- 8. 여러 줄 출력: 삼중 따옴표 -->
+      <section>
+        <h2>이렇게도 할 수 있어!</h2>
+        <h3>삼중 따옴표 (Triple Quotes)</h3>
+        <pre><code class="language-python" data-trim>
+print("""첫째 줄
+둘째 줄
+셋째 줄""")
+        </code></pre>
+        <div class="fragment tip-box">
+          여러 줄을 출력할 때는 삼중 따옴표가 더 편해!<br>
+          \n을 안 써도 되거든
+        </div>
+        <aside class="notes">
+          삼중 따옴표는 \n보다 직관적입니다. 긴 텍스트 출력에 유용합니다.
+          """ 또는 ''' 둘 다 가능합니다.
+        </aside>
+      </section>
+
+      <!-- 9. 여러 값 출력 -->
+      <section>
+        <h2>여러 값 한번에 출력하기</h2>
+        <pre><code class="language-python" data-trim>
+print("이름:", "파이썬")
+print("나이:", 30, "살")
+print(1, 2, 3, 4, 5)
+        </code></pre>
+        <p class="fragment">실행 결과:</p>
+        <pre class="fragment"><code class="language-text" data-trim>
+이름: 파이썬
+나이: 30 살
+1 2 3 4 5
+        </code></pre>
+        <p class="fragment">쉼표로 구분하면 <strong>자동으로 띄어쓰기</strong>가 들어가!</p>
+        <aside class="notes">
+          print()의 인자를 쉼표로 구분하면 자동으로 공백이 삽입됩니다.
+          sep 파라미터를 나중에 다룰 수도 있습니다.
+        </aside>
+      </section>
+
+      <!-- 10. f-string 소개 -->
+      <section>
+        <h2>f-string: 변수를 문장에 넣기</h2>
+        <pre><code class="language-python" data-trim>
+name = "철수"
+age = 15
+
+print(f"안녕, 나는 {name}이야!")
+print(f"나이는 {age}살이야")
+        </code></pre>
+        <p class="fragment">실행 결과:</p>
+        <pre class="fragment"><code class="language-text" data-trim>
+안녕, 나는 철수이야!
+나이는 15살이야
+        </code></pre>
+        <aside class="notes">
+          f-string은 Python 3.6+에서 사용 가능합니다.
+          따옴표 앞에 f를 붙이고, 변수를 중괄호 {}로 감쌉니다.
+        </aside>
+      </section>
+
+      <!-- 11. f-string 계산 -->
+      <section>
+        <h2>f-string 안에서 계산도 돼!</h2>
+        <pre><code class="language-python" data-trim>
+price = 3000
+count = 4
+
+print(f"총 가격: {price * count}원")
+print(f"한 개당: {price}원 x {count}개")
+        </code></pre>
+        <p class="fragment">실행 결과:</p>
+        <pre class="fragment"><code class="language-text" data-trim>
+총 가격: 12000원
+한 개당: 3000원 x 4개
+        </code></pre>
+        <div class="fragment tip-box">
+          중괄호 {} 안에는 변수뿐 아니라 <strong>계산식</strong>도 넣을 수 있어!
+        </div>
+        <aside class="notes">
+          f-string의 강력함을 보여주는 예제입니다.
+          중괄호 안에 어떤 표현식이든 넣을 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 12. print() 옵션: end -->
+      <section>
+        <h2>print()의 숨겨진 기능: end</h2>
+        <pre><code class="language-python" data-trim>
+# 기본: 줄바꿈
+print("가")
+print("나")
+
+# end로 줄바꿈 대신 다른 걸 넣기
+print("가", end=" ")
+print("나")
+        </code></pre>
+        <div class="columns fragment">
+          <div class="col">
+            <p><strong>기본</strong></p>
+            <pre><code class="language-text">가
+나</code></pre>
+          </div>
+          <div class="col">
+            <p><strong>end=" "</strong></p>
+            <pre><code class="language-text">가 나</code></pre>
+          </div>
+        </div>
+        <aside class="notes">
+          end 파라미터는 print()가 끝날 때 뭘 붙일지 정합니다.
+          기본은 "\n"(줄바꿈)이지만, 원하는 걸로 바꿀 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 13. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (2분)</h2>
+          <p style="font-size:1.2em;">자기소개 프로그램을 만들어 봐!</p>
+          <br>
+          <ul style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">이름, 나이, 취미를 변수에 저장하기</li>
+            <li class="fragment">f-string으로 자기소개 3줄 출력하기</li>
+            <li class="fragment">보너스: \n이나 삼중 따옴표로 한 번에 출력하기</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          2분 타이머를 켜주세요. 학생들이 직접 코드를 작성하는 시간입니다.
+          빨리 끝난 학생에게는 보너스 과제를 안내해주세요.
+        </aside>
+      </section>
+
+      <!-- 14. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>괄호를 안 닫았어!</strong>
+          <pre><code class="language-python">print("안녕"</code></pre>
+          <code>SyntaxError: unexpected EOF</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>괄호를 꼭 닫아주자</strong>
+          <pre><code class="language-python">print("안녕")</code></pre>
+        </div>
+        <aside class="notes">
+          가장 흔한 실수입니다. 괄호와 따옴표는 항상 짝이 맞아야 합니다.
+          에디터의 자동 완성 기능을 활용하라고 안내해주세요.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>따옴표 짝이 안 맞아!</strong>
+          <pre><code class="language-python">print("안녕')</code></pre>
+          <code>SyntaxError: EOL while scanning string</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>시작과 끝 따옴표를 같게!</strong>
+          <pre><code class="language-python">print("안녕")</code></pre>
+        </div>
+        <div class="fragment error-box">
+          <strong>f를 깜빡했어!</strong>
+          <pre><code class="language-python">name = "철수"
+print("안녕, {name}아")</code></pre>
+          <p>출력: 안녕, {name}아 (변수가 안 들어감!)</p>
+        </div>
+        <aside class="notes">
+          f-string에서 f를 빼먹는 실수가 매우 흔합니다.
+          에러가 나지 않고 그냥 {name}이 그대로 출력되기 때문에 더 헷갈립니다.
+        </aside>
+      </section>
+
+      <!-- 16. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>print()</code>로 화면에 출력할 수 있다</li>
+          <li class="fragment">따옴표는 작은따옴표, 큰따옴표 둘 다 OK</li>
+          <li class="fragment"><code>\n</code>으로 줄바꿈, 삼중 따옴표로 여러 줄</li>
+          <li class="fragment"><code>f"..."</code>로 변수를 문장에 넣을 수 있다</li>
+          <li class="fragment"><code>end=" "</code>로 줄바꿈 대신 다른 문자 넣기</li>
+        </ul>
+        <aside class="notes">
+          하나씩 체크하며 학생들에게 확인 질문을 해보세요.
+          "print()는 뭘 하는 함수야?" "f-string의 f는 뭘 의미해?"
+        </aside>
+      </section>
+
+      <!-- 17. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>따옴표 짝 확인!</strong><br>
+          열었으면 반드시 닫기. 에디터가 자동으로 닫아주는 걸 활용해!
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>f-string이 최고!</strong><br>
+          변수를 출력할 때는 무조건 f-string. 가장 읽기 쉬운 방법이야
+        </div>
+        <div class="fragment tip-box">
+          <strong>에러가 나면 당황하지 마!</strong><br>
+          SyntaxError가 나면 괄호와 따옴표부터 확인해봐
+        </div>
+        <aside class="notes">
+          학생들에게 에러를 두려워하지 말라고 격려해주세요.
+          에러는 파이썬이 "여기가 이상해"라고 알려주는 친절한 메시지입니다.
+        </aside>
+      </section>
+
+      <!-- 18. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>출력의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          수업 마무리입니다. pythink2 사이트로 이동하여 World 1 문제를 풀어보게 하세요.
+          교실 접속 코드를 안내해주세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

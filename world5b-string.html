@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 5b: 문자열의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🚂</span>
+        <h1>문자열의 세계</h1>
+        <p class="subtitle">World 5b — 글자들이 줄 선 기차</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          문자열은 파이썬에서 가장 많이 다루는 자료형입니다.
+          인덱싱과 슬라이싱 개념을 "기차" 비유로 이해시킵니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>인덱싱</strong>으로 글자 하나 꺼내기</li>
+          <li class="fragment"><strong>슬라이싱</strong>으로 부분 문자열 자르기</li>
+          <li class="fragment">유용한 <strong>문자열 메서드</strong> 사용법</li>
+        </ul>
+        <aside class="notes">
+          인덱싱, 슬라이싱, 메서드 세 가지를 배웁니다.
+        </aside>
+      </section>
+
+      <!-- 3. 비유 -->
+      <section>
+        <h2>문자열이란?</h2>
+        <div class="analogy-card">
+          <p>🚂 문자열은 <strong>글자들이 줄 선 기차</strong>야!<br>각 칸에 글자가 하나씩 타고 있어</p>
+        </div>
+        <div class="fragment" style="margin-top:1em; font-size:1.5em; text-align:center;">
+          <table style="margin:0 auto; border-collapse:collapse;">
+            <tr>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#e3f2fd;">P</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#e8f5e9;">y</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#fff3e0;">t</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#fce4ec;">h</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#f3e5f5;">o</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em; background:#e0f7fa;">n</td>
+            </tr>
+            <tr style="font-size:0.6em; color:#888;">
+              <td style="padding:0.2em;">0</td>
+              <td style="padding:0.2em;">1</td>
+              <td style="padding:0.2em;">2</td>
+              <td style="padding:0.2em;">3</td>
+              <td style="padding:0.2em;">4</td>
+              <td style="padding:0.2em;">5</td>
+            </tr>
+          </table>
+        </div>
+        <aside class="notes">
+          기차 비유와 함께 인덱스 번호를 보여주세요.
+          번호는 0부터 시작한다는 것이 핵심입니다!
+        </aside>
+      </section>
+
+      <!-- 4. 인덱싱 기본 -->
+      <section>
+        <h2>인덱싱: 글자 하나 꺼내기</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+
+print(word[0])    # P  (첫 번째)
+print(word[1])    # y  (두 번째)
+print(word[5])    # n  (여섯 번째)
+        </code></pre>
+        <div class="fragment warning-box">
+          인덱스는 <strong>0부터 시작</strong>해!<br>
+          첫 번째 글자 = [0], 두 번째 = [1], ...
+        </div>
+        <aside class="notes">
+          0-based indexing은 프로그래밍의 기본입니다.
+          "기차 칸 번호가 0번부터 시작한다"고 설명하세요.
+        </aside>
+      </section>
+
+      <!-- 5. 음수 인덱싱 -->
+      <section>
+        <h2>뒤에서부터: 음수 인덱스</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+
+print(word[-1])    # n  (마지막)
+print(word[-2])    # o  (뒤에서 두 번째)
+print(word[-6])    # P  (뒤에서 여섯 번째 = 첫 번째)
+        </code></pre>
+        <div class="fragment" style="margin-top:1em; font-size:1.3em; text-align:center;">
+          <table style="margin:0 auto; border-collapse:collapse;">
+            <tr style="font-size:0.6em; color:#1976d2;">
+              <td style="padding:0.2em;">0</td>
+              <td style="padding:0.2em;">1</td>
+              <td style="padding:0.2em;">2</td>
+              <td style="padding:0.2em;">3</td>
+              <td style="padding:0.2em;">4</td>
+              <td style="padding:0.2em;">5</td>
+            </tr>
+            <tr>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">P</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">y</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">t</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">h</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">o</td>
+              <td style="border:2px solid #333; padding:0.3em 0.6em;">n</td>
+            </tr>
+            <tr style="font-size:0.6em; color:#e53935;">
+              <td style="padding:0.2em;">-6</td>
+              <td style="padding:0.2em;">-5</td>
+              <td style="padding:0.2em;">-4</td>
+              <td style="padding:0.2em;">-3</td>
+              <td style="padding:0.2em;">-2</td>
+              <td style="padding:0.2em;">-1</td>
+            </tr>
+          </table>
+        </div>
+        <aside class="notes">
+          음수 인덱스는 뒤에서부터 세는 방법입니다.
+          -1은 마지막, -2는 마지막에서 두 번째입니다.
+        </aside>
+      </section>
+
+      <!-- 6. len() -->
+      <section>
+        <h2>len(): 길이 재기</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+print(len(word))      # 6
+
+name = "안녕하세요"
+print(len(name))      # 5
+
+empty = ""
+print(len(empty))     # 0
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>len()</code> = length(길이)의 약자<br>
+          마지막 인덱스는 항상 <code>len() - 1</code>이야!
+        </div>
+        <aside class="notes">
+          len()은 문자열의 길이를 반환합니다.
+          "Python"은 6글자이지만, 마지막 인덱스는 5입니다 (0부터 시작하므로).
+        </aside>
+      </section>
+
+      <!-- 7. 슬라이싱 기본 -->
+      <section>
+        <h2>슬라이싱: 부분 자르기</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+
+print(word[0:3])    # Pyt  (0번~2번)
+print(word[2:5])    # tho  (2번~4번)
+print(word[0:6])    # Python (전체)
+        </code></pre>
+        <div class="fragment" style="font-size:1.3em; text-align:center;">
+          <code>[시작:끝]</code> → <strong>시작</strong>부터 <strong>끝-1</strong>까지!
+        </div>
+        <div class="fragment warning-box">
+          <strong>끝 번호는 포함 안 돼!</strong><br>
+          <code>[0:3]</code>은 0, 1, 2번만 (3번은 빠져!)
+        </div>
+        <aside class="notes">
+          슬라이싱에서 끝 인덱스가 포함되지 않는 것이 가장 헷갈리는 부분입니다.
+          "끝 번호 직전까지"라고 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 8. 슬라이싱 생략 -->
+      <section>
+        <h2>슬라이싱 생략 문법</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+
+print(word[:3])     # Pyt  (처음~2번)
+print(word[3:])     # hon  (3번~끝)
+print(word[:])      # Python (전체 복사)
+        </code></pre>
+        <ul class="fragment">
+          <li><code>[:3]</code> = 처음부터 3번 직전까지</li>
+          <li><code>[3:]</code> = 3번부터 끝까지</li>
+          <li><code>[:]</code> = 전체</li>
+        </ul>
+        <aside class="notes">
+          생략 문법은 매우 자주 사용됩니다.
+          앞을 생략하면 0부터, 뒤를 생략하면 끝까지입니다.
+        </aside>
+      </section>
+
+      <!-- 9. 슬라이싱 step -->
+      <section>
+        <h2>슬라이싱 스텝</h2>
+        <pre><code class="language-python" data-trim>
+word = "Python"
+
+print(word[::2])     # Pto  (2칸씩 건너뛰기)
+print(word[1::2])    # yhn  (1번부터 2칸씩)
+        </code></pre>
+        <h3 class="fragment" style="color:#e53935;">뒤집기 마법! [::-1]</h3>
+        <pre class="fragment"><code class="language-python" data-trim>
+word = "Python"
+print(word[::-1])    # nohtyP (뒤집기!)
+
+name = "토마토"
+print(name[::-1])    # 토마토 (회문!)
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>[::-1]</code>은 문자열 뒤집기의 정석!<br>
+          회문(앞뒤가 같은 말) 판별에 쓸 수 있어
+        </div>
+        <aside class="notes">
+          [::-1]은 매우 유용한 패턴입니다.
+          회문(palindrome) 판별: word == word[::-1]
+        </aside>
+      </section>
+
+      <!-- 10. 문자열 메서드: 대소문자 -->
+      <section>
+        <h2>문자열 메서드</h2>
+        <pre><code class="language-python" data-trim>
+text = "Hello Python"
+
+print(text.upper())     # HELLO PYTHON
+print(text.lower())     # hello python
+print(text.title())     # Hello Python
+
+# 원본은 변하지 않아!
+print(text)             # Hello Python
+        </code></pre>
+        <div class="fragment warning-box">
+          문자열은 <strong>불변(immutable)</strong>!<br>
+          메서드는 새 문자열을 반환하고, 원본은 그대로야
+        </div>
+        <aside class="notes">
+          문자열의 불변성은 중요한 개념입니다.
+          메서드를 호출해도 원본은 변하지 않습니다.
+          결과를 사용하려면 새 변수에 저장해야 합니다.
+        </aside>
+      </section>
+
+      <!-- 11. 문자열 메서드: 검색/치환 -->
+      <section>
+        <h2>문자열 메서드: 찾기 / 바꾸기</h2>
+        <pre><code class="language-python" data-trim>
+text = "나는 파이썬을 좋아해"
+
+# 찾기
+print(text.find("파이썬"))     # 3  (위치)
+print(text.count("나"))        # 1  (개수)
+print("파이썬" in text)        # True
+
+# 바꾸기
+new = text.replace("파이썬", "코딩")
+print(new)    # 나는 코딩을 좋아해
+        </code></pre>
+        <aside class="notes">
+          find()는 위치를 반환하고, 못 찾으면 -1을 반환합니다.
+          replace()는 새 문자열을 반환합니다 (원본 변경 없음).
+        </aside>
+      </section>
+
+      <!-- 12. 문자열 메서드: split/join -->
+      <section>
+        <h2>split()과 join()</h2>
+        <pre><code class="language-python" data-trim>
+# split: 문자열 → 리스트
+sentence = "나는 코딩을 좋아해"
+words = sentence.split()
+print(words)    # ['나는', '코딩을', '좋아해']
+
+# join: 리스트 → 문자열
+result = "-".join(words)
+print(result)   # 나는-코딩을-좋아해
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>split()</code>은 쪼개기, <code>join()</code>은 합치기!<br>
+          World 3의 <code>input().split()</code>이 이거였어!
+        </div>
+        <aside class="notes">
+          split()은 World 3에서 이미 사용해본 적 있습니다.
+          그때는 이해 없이 사용했지만, 이제 원리를 알게 됩니다.
+        </aside>
+      </section>
+
+      <!-- 13. 문자열 * 연산 -->
+      <section>
+        <h2>문자열 곱하기</h2>
+        <pre><code class="language-python" data-trim>
+print("Ha" * 3)       # HaHaHa
+print("-" * 30)       # ------------------------------
+print("★" * 5)        # ★★★★★
+        </code></pre>
+        <div class="fragment">
+          <h3>활용: 별 찍기!</h3>
+          <pre><code class="language-python" data-trim>
+for i in range(1, 6):
+    print("★" * i)
+          </code></pre>
+          <pre><code class="language-text" data-trim>
+★
+★★
+★★★
+★★★★
+★★★★★
+          </code></pre>
+        </div>
+        <aside class="notes">
+          문자열 곱하기는 반복문과 결합하면 패턴 출력에 유용합니다.
+          이건 World 6(반복문)의 미리보기이기도 합니다.
+        </aside>
+      </section>
+
+      <!-- 14. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">이름 놀이 프로그램!</p>
+          <br>
+          <ol style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">이름을 입력받기</li>
+            <li class="fragment">첫 글자, 마지막 글자 출력</li>
+            <li class="fragment">이름 뒤집기 ([::-1])</li>
+            <li class="fragment">보너스: 이름이 회문인지 판별!</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          3분 타이머. 인덱싱, 슬라이싱, 뒤집기를 종합적으로 연습합니다.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>인덱스 범위 초과!</strong>
+          <pre><code class="language-python">word = "abc"      # 길이 3, 인덱스 0~2
+print(word[3])     # IndexError!</code></pre>
+          <code>IndexError: string index out of range</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>마지막 인덱스 = len() - 1</strong>
+          <pre><code class="language-python">word = "abc"
+print(word[2])     # c  (마지막)
+print(word[-1])    # c  (더 안전!)</code></pre>
+        </div>
+        <aside class="notes">
+          IndexError는 존재하지 않는 인덱스에 접근할 때 발생합니다.
+          음수 인덱스 -1을 사용하면 마지막 글자에 안전하게 접근할 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 16. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>슬라이싱 끝 포함 착각!</strong>
+          <pre><code class="language-python">word = "Python"
+print(word[0:2])   # Py (P, y만! t는 빠져!)</code></pre>
+          <p>"Pyt" 나올 줄 알았는데 "Py"만 나와!</p>
+        </div>
+        <div class="fragment correct-box">
+          <strong>[시작:끝] → 끝은 미포함!</strong>
+          <pre><code class="language-python">print(word[0:3])   # Pyt (0,1,2번 = 3글자)</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          <strong>공식:</strong> 글자 수 = 끝 - 시작<br>
+          <code>[0:3]</code> → 3 - 0 = 3글자!
+        </div>
+        <aside class="notes">
+          "끝 인덱스 미포함"은 슬라이싱에서 가장 흔한 혼동입니다.
+          끝 - 시작 = 글자 수라는 공식을 알려주세요.
+        </aside>
+      </section>
+
+      <!-- 17. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>[0]</code>으로 인덱싱, <code>[-1]</code>로 마지막 글자</li>
+          <li class="fragment"><code>[시작:끝]</code> 슬라이싱, 끝은 미포함!</li>
+          <li class="fragment"><code>[::-1]</code>로 문자열 뒤집기</li>
+          <li class="fragment"><code>.upper()</code> <code>.lower()</code> <code>.replace()</code> <code>.split()</code></li>
+          <li class="fragment">문자열은 불변! 메서드는 새 문자열을 반환</li>
+        </ul>
+        <aside class="notes">
+          핵심 정리를 확인합니다.
+        </aside>
+      </section>
+
+      <!-- 18. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>[시작:끝] 끝 미포함!</strong><br>
+          이것만 기억하면 슬라이싱 마스터!
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>[::-1]로 뒤집기!</strong><br>
+          회문 판별: <code>word == word[::-1]</code>
+        </div>
+        <div class="fragment tip-box">
+          <strong>마지막 글자는 [-1]!</strong><br>
+          길이를 몰라도 항상 마지막을 가져올 수 있어
+        </div>
+        <aside class="notes">
+          세 가지 핵심 팁을 정리합니다.
+        </aside>
+      </section>
+
+      <!-- 19. 메서드 요약표 -->
+      <section>
+        <h2>문자열 메서드 요약</h2>
+        <table style="font-size:0.85em; margin:0 auto;">
+          <tr><th>메서드</th><th>기능</th><th>예시</th></tr>
+          <tr><td><code>.upper()</code></td><td>대문자로</td><td>"abc" → "ABC"</td></tr>
+          <tr><td><code>.lower()</code></td><td>소문자로</td><td>"ABC" → "abc"</td></tr>
+          <tr><td><code>.strip()</code></td><td>양쪽 공백 제거</td><td>" hi " → "hi"</td></tr>
+          <tr><td><code>.replace(a,b)</code></td><td>a를 b로 교체</td><td>"cat" → "bat"</td></tr>
+          <tr><td><code>.find(x)</code></td><td>x의 위치</td><td>"hello".find("l") → 2</td></tr>
+          <tr><td><code>.count(x)</code></td><td>x의 개수</td><td>"hello".count("l") → 2</td></tr>
+          <tr><td><code>.split()</code></td><td>나누기</td><td>"a b" → ["a","b"]</td></tr>
+        </table>
+        <aside class="notes">
+          참고용 요약표입니다. 모두 외울 필요는 없지만, 어떤 기능이 있는지 알아두면 좋습니다.
+        </aside>
+      </section>
+
+      <!-- 20. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>문자열의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 5b 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

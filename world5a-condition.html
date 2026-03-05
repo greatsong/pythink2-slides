@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 5a: 조건문의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🚦</span>
+        <h1>조건문의 세계</h1>
+        <p class="subtitle">World 5a — 갈림길의 표지판, if-elif-else</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          조건문은 프로그램에 "판단력"을 주는 개념입니다.
+          지금까지는 위에서 아래로 순서대로만 실행됐지만,
+          이제 조건에 따라 다른 길을 갈 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment"><strong>if문</strong>으로 조건에 따라 다르게 실행하기</li>
+          <li class="fragment"><strong>elif / else</strong>로 여러 갈래 만들기</li>
+          <li class="fragment"><strong>비교 연산자</strong>와 <strong>논리 연산자</strong> 사용법</li>
+        </ul>
+        <aside class="notes">
+          조건문은 코딩의 가장 핵심적인 개념 중 하나입니다.
+          "만약 ~라면"이라는 일상 표현과 연결해서 설명하세요.
+        </aside>
+      </section>
+
+      <!-- 3. 비유 -->
+      <section>
+        <h2>if문은 뭘까?</h2>
+        <div class="analogy-card">
+          <p>🚦 if문은 <strong>갈림길의 표지판</strong>이야!<br>조건에 따라 어느 길로 갈지 정해줘</p>
+        </div>
+        <p class="fragment" style="margin-top:1em;">
+          "비가 오면 우산을 가져가고,<br>안 오면 그냥 나가"<br>
+          → 이게 바로 if-else야!
+        </p>
+        <aside class="notes">
+          일상생활의 조건문을 먼저 이야기합니다.
+          학생들에게 "오늘 아침에 판단한 것"을 물어보세요.
+        </aside>
+      </section>
+
+      <!-- 4. 비교 연산자 -->
+      <section>
+        <h2>비교 연산자</h2>
+        <pre><code class="language-python" data-trim>
+print(5 > 3)      # True   (크다)
+print(5 < 3)      # False  (작다)
+print(5 >= 5)     # True   (크거나 같다)
+print(5 <= 4)     # False  (작거나 같다)
+print(5 == 5)     # True   (같다)
+print(5 != 3)     # True   (다르다)
+        </code></pre>
+        <div class="fragment warning-box">
+          <code>=</code>는 "넣는다" (할당)<br>
+          <code>==</code>는 "같니?" (비교)<br>
+          헷갈리면 안 돼!
+        </div>
+        <aside class="notes">
+          = 과 ==의 차이를 다시 한번 강조합니다.
+          True/False는 대문자로 시작해야 한다는 점도 짚어주세요.
+        </aside>
+      </section>
+
+      <!-- 5. if 기본 -->
+      <section>
+        <h2>if문 기본 구조</h2>
+        <pre><code class="language-python" data-trim>
+age = 15
+
+if age >= 14:
+    print("중학생이구나!")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+중학생이구나!
+        </code></pre>
+        <ul class="fragment">
+          <li><code>if</code> 뒤에 <strong>조건</strong>을 쓰고 <strong>콜론(:)</strong></li>
+          <li>다음 줄은 <strong>들여쓰기 4칸</strong> (스페이스 4번 또는 Tab)</li>
+        </ul>
+        <aside class="notes">
+          콜론과 들여쓰기가 핵심입니다.
+          들여쓰기가 없으면 에러가 납니다.
+        </aside>
+      </section>
+
+      <!-- 6. if-else -->
+      <section>
+        <h2>if-else: 둘 중 하나</h2>
+        <pre><code class="language-python" data-trim>
+score = int(input("점수: "))
+
+if score >= 60:
+    print("합격!")
+else:
+    print("불합격...")
+        </code></pre>
+        <div class="fragment">
+          <p>60 입력 → <code>합격!</code></p>
+          <p>59 입력 → <code>불합격...</code></p>
+        </div>
+        <div class="fragment tip-box">
+          조건이 True면 if 블록, False면 else 블록이 실행돼!
+        </div>
+        <aside class="notes">
+          if-else는 "둘 중 하나"입니다.
+          반드시 하나의 블록만 실행됩니다.
+        </aside>
+      </section>
+
+      <!-- 7. if-elif-else -->
+      <section>
+        <h2>if-elif-else: 여러 갈래</h2>
+        <pre><code class="language-python" data-trim>
+score = int(input("점수: "))
+
+if score >= 90:
+    print("A등급")
+elif score >= 80:
+    print("B등급")
+elif score >= 70:
+    print("C등급")
+else:
+    print("D등급")
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>elif</code> = else + if의 줄임말!<br>
+          위에서부터 확인하고, 처음 True인 것만 실행!
+        </div>
+        <aside class="notes">
+          elif는 개수 제한이 없습니다.
+          위에서부터 순서대로 확인하고, 처음 True인 것만 실행한다는 것이 핵심입니다.
+          85점이면 B등급만 출력됩니다 (A 조건에서 이미 탈락했으므로).
+        </aside>
+      </section>
+
+      <!-- 8. elif 순서가 중요! -->
+      <section>
+        <h2>순서가 중요해!</h2>
+        <div class="error-box">
+          <strong>순서를 잘못 쓰면?</strong>
+          <pre><code class="language-python">score = 95
+if score >= 70:
+    print("C등급")    # 여기서 걸려버려!
+elif score >= 80:
+    print("B등급")    # 실행 안 됨
+elif score >= 90:
+    print("A등급")    # 실행 안 됨</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>큰 수부터 비교해야 해!</strong><br>
+          90 → 80 → 70 순서로 (높은 기준부터!)
+        </div>
+        <aside class="notes">
+          이 실수는 초보자가 정말 많이 합니다.
+          "위에서부터 하나만 실행된다"는 규칙을 다시 강조하세요.
+        </aside>
+      </section>
+
+      <!-- 9. 논리 연산자 -->
+      <section>
+        <h2>논리 연산자: and, or, not</h2>
+        <pre><code class="language-python" data-trim>
+age = 15
+has_ticket = True
+
+# and: 둘 다 True여야 True
+if age >= 12 and has_ticket:
+    print("입장 가능!")
+
+# or: 하나만 True여도 True
+if age < 12 or age >= 65:
+    print("할인 대상!")
+
+# not: True↔False 뒤집기
+if not has_ticket:
+    print("표를 먼저 사세요")
+        </code></pre>
+        <aside class="notes">
+          and/or/not은 조건을 조합할 때 씁니다.
+          일상 언어로: "12세 이상이고 표가 있으면" → and
+          "12세 미만이거나 65세 이상이면" → or
+        </aside>
+      </section>
+
+      <!-- 10. 범위 조건 -->
+      <section>
+        <h2>범위 확인하기</h2>
+        <pre><code class="language-python" data-trim>
+temp = int(input("기온: "))
+
+# 방법 1: and 사용
+if temp >= 20 and temp <= 28:
+    print("나들이 가기 좋은 날씨!")
+
+# 방법 2: 파이썬 특별 문법!
+if 20 <= temp <= 28:
+    print("나들이 가기 좋은 날씨!")
+        </code></pre>
+        <div class="fragment tip-box">
+          파이썬은 <code>20 &lt;= temp &lt;= 28</code> 이렇게<br>
+          수학처럼 범위를 쓸 수 있어! (다른 언어엔 없는 기능)
+        </div>
+        <aside class="notes">
+          파이썬의 chained comparison은 매우 편리한 기능입니다.
+          수학 표현과 비슷해서 가독성이 좋습니다.
+        </aside>
+      </section>
+
+      <!-- 11. 중첩 if -->
+      <section>
+        <h2>이렇게도 할 수 있어!</h2>
+        <h3>if 안에 if (중첩)</h3>
+        <pre><code class="language-python" data-trim>
+age = int(input("나이: "))
+money = int(input("돈: "))
+
+if age >= 12:
+    if money >= 5000:
+        print("영화 보러 가자!")
+    else:
+        print("돈이 부족해...")
+else:
+    print("12세 이상만 관람 가능!")
+        </code></pre>
+        <div class="fragment warning-box">
+          중첩이 깊어지면 읽기 어려워!<br>
+          가능하면 <code>and</code>로 합치는 게 나아
+        </div>
+        <aside class="notes">
+          중첩 if는 가능하지만, 너무 깊어지면 가독성이 떨어집니다.
+          이 예제는 and로 합칠 수 있다고 안내해주세요.
+        </aside>
+      </section>
+
+      <!-- 12. 실전: 학점 계산기 -->
+      <section>
+        <h2>실전! 학점 계산기</h2>
+        <pre><code class="language-python" data-trim>
+score = int(input("점수(0~100): "))
+
+if score > 100 or score < 0:
+    print("잘못된 점수!")
+elif score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+if 0 <= score <= 100:
+    print(f"학점: {grade}")
+        </code></pre>
+        <aside class="notes">
+          입력값 검증(0~100)과 학점 판별을 동시에 보여주는 종합 예제입니다.
+        </aside>
+      </section>
+
+      <!-- 13. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">나이별 요금 계산기!</p>
+          <br>
+          <ul style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">0~6세: 무료</li>
+            <li class="fragment">7~12세: 500원</li>
+            <li class="fragment">13~18세: 1000원</li>
+            <li class="fragment">19세 이상: 2000원</li>
+            <li class="fragment">보너스: 65세 이상은 무료!</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          3분 타이머. if-elif-else를 연습하는 좋은 예제입니다.
+          65세 이상 조건의 위치를 잘 생각해야 합니다.
+        </aside>
+      </section>
+
+      <!-- 14. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>콜론(:)을 빼먹었어!</strong>
+          <pre><code class="language-python">if score >= 90
+    print("A")    # SyntaxError!</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>if 조건 뒤에 콜론 필수!</strong>
+          <pre><code class="language-python">if score >= 90:
+    print("A")</code></pre>
+        </div>
+        <aside class="notes">
+          콜론 빠뜨리기는 가장 흔한 실수입니다.
+          if, elif, else, for, while 뒤에는 항상 콜론!
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>들여쓰기가 없어!</strong>
+          <pre><code class="language-python">if score >= 90:
+print("A")    # IndentationError!</code></pre>
+        </div>
+        <div class="fragment error-box">
+          <strong>>= 대신 => 를 써!</strong>
+          <pre><code class="language-python">if score => 90:    # SyntaxError!</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>크거나 같다 = <code>&gt;=</code> (부등호가 먼저!)</strong>
+        </div>
+        <aside class="notes">
+          들여쓰기 에러와 >= 순서 실수는 초보자에게 매우 흔합니다.
+          "부등호(>)가 먼저, 등호(=)가 나중"으로 외우게 하세요.
+        </aside>
+      </section>
+
+      <!-- 16. 경계값 주의 -->
+      <section>
+        <h2>자주 하는 실수: 경계값!</h2>
+        <div class="error-box">
+          <strong>>= 와 > 를 헷갈려!</strong>
+          <pre><code class="language-python"># 60점 이상이면 합격인데...
+if score > 60:    # 60점은 불합격이 돼버려!
+    print("합격")</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>60점 "이상"이면 >= 를 써야 해!</strong>
+          <pre><code class="language-python">if score >= 60:   # 60점도 합격!
+    print("합격")</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          <strong>경계값 테스트!</strong> 59, 60, 61을 넣어보면 실수를 잡을 수 있어
+        </div>
+        <aside class="notes">
+          경계값(boundary value) 테스트는 프로그래밍의 중요한 습관입니다.
+          "이상"은 >=, "초과"는 >, "이하"는 <=, "미만"은 <
+        </aside>
+      </section>
+
+      <!-- 17. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>if 조건:</code> + 들여쓰기로 조건 실행</li>
+          <li class="fragment"><code>elif</code>로 추가 조건, <code>else</code>로 나머지</li>
+          <li class="fragment"><code>==</code>(같다) vs <code>=</code>(넣는다) 구분!</li>
+          <li class="fragment"><code>and</code>, <code>or</code>, <code>not</code>으로 조건 조합</li>
+          <li class="fragment">경계값(<code>>=</code> vs <code>></code>) 주의!</li>
+        </ul>
+        <aside class="notes">
+          핵심 체크리스트를 확인합니다.
+        </aside>
+      </section>
+
+      <!-- 18. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>경계값을 꼭 확인해!</strong><br>
+          >= 인지 > 인지, 딱 그 값을 넣어봐
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>들여쓰기 4칸!</strong><br>
+          Tab 키 한 번 = 스페이스 4번. 일관되게!
+        </div>
+        <div class="fragment tip-box">
+          <strong>elif 순서는 큰 수부터!</strong><br>
+          90 → 80 → 70 → else (높은 기준을 먼저 확인)
+        </div>
+        <aside class="notes">
+          세 가지 핵심 팁을 정리합니다.
+        </aside>
+      </section>
+
+      <!-- 19. 보너스: in 연산자 -->
+      <section>
+        <h2>보너스: in 연산자</h2>
+        <pre><code class="language-python" data-trim>
+color = input("좋아하는 색: ")
+
+if color in ["빨강", "파랑", "노랑"]:
+    print("삼원색이네!")
+else:
+    print("삼원색은 아니야")
+        </code></pre>
+        <div class="fragment tip-box">
+          <code>in</code>은 "~안에 있니?"를 물어보는 연산자야!<br>
+          여러 값 중 하나인지 확인할 때 편해
+        </div>
+        <aside class="notes">
+          in 연산자는 여러 값을 비교할 때 매우 유용합니다.
+          if color == "빨강" or color == "파랑" or... 보다 훨씬 깔끔합니다.
+        </aside>
+      </section>
+
+      <!-- 20. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>조건문의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 5a 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

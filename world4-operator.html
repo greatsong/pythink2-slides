@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 4: 연산자의 세계 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🔧</span>
+        <h1>연산자의 세계</h1>
+        <p class="subtitle">World 4 — 계산의 도구 상자를 열자</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          연산자는 수학 시간에 배운 것과 비슷하지만, 파이썬만의 특별한 연산자도 있습니다.
+          특히 //, %, **를 확실히 이해시키는 것이 목표입니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment">파이썬의 <strong>나누기 연산자 3총사</strong> (/, //, %)</li>
+          <li class="fragment"><strong>거듭제곱(**)과 round()</strong> 사용법</li>
+          <li class="fragment">연산자로 <strong>실생활 문제</strong> 풀기</li>
+        </ul>
+        <aside class="notes">
+          기본 사칙연산은 간단히 넘어가고, //, %, **에 집중합니다.
+        </aside>
+      </section>
+
+      <!-- 3. 비유 -->
+      <section>
+        <h2>연산자란?</h2>
+        <div class="analogy-card">
+          <p>🧰 연산자는 <strong>계산의 도구 상자</strong>야!<br>상황에 맞는 도구를 꺼내 쓰면 돼</p>
+        </div>
+        <ul class="fragment" style="margin-top:1em;">
+          <li><code>+</code> <code>-</code> <code>*</code> 는 수학이랑 같아</li>
+          <li><code>/</code> <code>//</code> <code>%</code> 는 나누기의 3가지 버전</li>
+          <li><code>**</code> 는 거듭제곱 (수학의 ^)</li>
+        </ul>
+        <aside class="notes">
+          기본 연산자를 간단히 정리하고, 특수 연산자로 넘어갑니다.
+        </aside>
+      </section>
+
+      <!-- 4. 기본 연산자 빠르게 -->
+      <section>
+        <h2>기본 연산자 (복습)</h2>
+        <pre><code class="language-python" data-trim>
+print(10 + 3)    # 13   더하기
+print(10 - 3)    # 7    빼기
+print(10 * 3)    # 30   곱하기
+print(10 / 3)    # 3.333...  나누기 (실수)
+        </code></pre>
+        <div class="fragment warning-box">
+          <code>/</code>는 항상 <strong>소수점이 있는 실수</strong>를 돌려줘!<br>
+          <code>10 / 2</code>도 결과가 <code>5.0</code>이야 (5가 아님!)
+        </div>
+        <aside class="notes">
+          / 연산자는 Python 3에서 항상 float을 반환합니다.
+          이 점을 미리 짚어두면 // 의 필요성이 자연스럽게 이해됩니다.
+        </aside>
+      </section>
+
+      <!-- 5. // 몫 연산자 -->
+      <section>
+        <h2>// : 몫만 딱!</h2>
+        <pre><code class="language-python" data-trim>
+print(10 // 3)    # 3   (소수점 버림!)
+print(17 // 5)    # 3
+print(20 // 7)    # 2
+        </code></pre>
+        <div class="fragment analogy-card">
+          <p>🍕 피자 17조각을 5명이 나눠 먹으면?<br>
+          한 사람당 <strong>3조각</strong>! (나머지 2조각은 남아)</p>
+        </div>
+        <div class="fragment tip-box">
+          <code>//</code>는 "몫" → 소수점 아래를 버리고 <strong>정수만</strong> 남겨!
+        </div>
+        <aside class="notes">
+          피자 비유로 몫의 개념을 직관적으로 설명합니다.
+          // 는 floor division이라고 부릅니다.
+        </aside>
+      </section>
+
+      <!-- 6. % 나머지 연산자 -->
+      <section>
+        <h2>% : 나머지만 딱!</h2>
+        <pre><code class="language-python" data-trim>
+print(10 % 3)    # 1   (10÷3=3 나머지 1)
+print(17 % 5)    # 2   (17÷5=3 나머지 2)
+print(20 % 7)    # 6   (20÷7=2 나머지 6)
+        </code></pre>
+        <div class="fragment analogy-card">
+          <p>🍕 피자 17조각을 5명이 나눈 후<br>
+          <strong>남는 2조각</strong>이 나머지야!</p>
+        </div>
+        <div class="fragment tip-box">
+          <code>%</code>는 "나머지" → 나누고 남은 것!
+        </div>
+        <aside class="notes">
+          % 연산자를 modulo(모듈로)라고 부릅니다.
+          짝수/홀수 판별, 시간 계산 등에 유용합니다.
+        </aside>
+      </section>
+
+      <!-- 7. // 와 % 비교 -->
+      <section>
+        <h2>// vs % 한눈에 보기</h2>
+        <pre><code class="language-python" data-trim>
+# 17을 5로 나누면?
+print(17 // 5)   # 3  (몫)
+print(17 % 5)    # 2  (나머지)
+
+# 검증: 몫 × 나누는수 + 나머지 = 원래수
+print(3 * 5 + 2) # 17  맞다!
+        </code></pre>
+        <div class="fragment" style="font-size:1.3em; text-align:center; margin-top:1em;">
+          <strong>17 = 5 &times; <span style="color:#1976d2;">3</span> + <span style="color:#e53935;">2</span></strong><br>
+          <span style="color:#1976d2;">//는 몫</span> &nbsp;&nbsp; <span style="color:#e53935;">%는 나머지</span>
+        </div>
+        <aside class="notes">
+          몫과 나머지의 관계를 수식으로 확인합니다.
+          이 검증 공식은 문제 풀이에서 자주 사용됩니다.
+        </aside>
+      </section>
+
+      <!-- 8. 실전: 시간 변환 -->
+      <section>
+        <h2>실전! 시간 변환</h2>
+        <pre><code class="language-python" data-trim>
+total_minutes = 135
+
+hours = total_minutes // 60    # 몫 = 시간
+minutes = total_minutes % 60   # 나머지 = 분
+
+print(f"{total_minutes}분 = {hours}시간 {minutes}분")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+135분 = 2시간 15분
+        </code></pre>
+        <div class="fragment tip-box">
+          //와 %는 <strong>단위 변환</strong>에서 정말 자주 쓰여!<br>
+          분→시간, 초→분, 원→천원 등
+        </div>
+        <aside class="notes">
+          시간 변환은 학생들이 공감하기 쉬운 실생활 예제입니다.
+          "영화 135분이면 몇 시간 몇 분?"이라고 물어보세요.
+        </aside>
+      </section>
+
+      <!-- 9. 짝수/홀수 -->
+      <section>
+        <h2>실전! 짝수 / 홀수 판별</h2>
+        <pre><code class="language-python" data-trim>
+num = int(input("숫자: "))
+
+if num % 2 == 0:
+    print("짝수!")
+else:
+    print("홀수!")
+        </code></pre>
+        <div class="fragment tip-box">
+          어떤 수를 <strong>2로 나눈 나머지</strong>가<br>
+          0이면 짝수, 1이면 홀수!
+        </div>
+        <aside class="notes">
+          if문은 World 5a에서 자세히 배우지만, 미리 맛보기로 보여줍니다.
+          % 2 == 0 패턴은 매우 자주 사용됩니다.
+        </aside>
+      </section>
+
+      <!-- 10. ** 거듭제곱 -->
+      <section>
+        <h2>** : 거듭제곱</h2>
+        <pre><code class="language-python" data-trim>
+print(2 ** 3)     # 8    (2³ = 2×2×2)
+print(5 ** 2)     # 25   (5² = 5×5)
+print(10 ** 0)    # 1    (어떤 수의 0제곱은 1)
+print(9 ** 0.5)   # 3.0  (제곱근! √9 = 3)
+        </code></pre>
+        <div class="fragment tip-box">
+          수학에서는 ^ 를 쓰지만, 파이썬에서는 <code>**</code>를 써!<br>
+          <code>**0.5</code>는 제곱근(루트)이야
+        </div>
+        <aside class="notes">
+          ^ 는 파이썬에서 XOR(비트 연산)이므로 거듭제곱에 쓰면 안 됩니다.
+          반드시 **를 사용해야 합니다.
+        </aside>
+      </section>
+
+      <!-- 11. round() -->
+      <section>
+        <h2>round() : 반올림</h2>
+        <pre><code class="language-python" data-trim>
+print(round(3.14159))      # 3    (정수로)
+print(round(3.14159, 2))   # 3.14 (소수 2자리)
+print(round(3.14159, 1))   # 3.1  (소수 1자리)
+print(round(2.5))          # 2    (은행 반올림!)
+        </code></pre>
+        <div class="fragment warning-box">
+          파이썬의 round()는 <strong>은행 반올림</strong>(Banker's rounding)!<br>
+          2.5 → 2, 3.5 → 4 (짝수 쪽으로 반올림)
+        </div>
+        <aside class="notes">
+          은행 반올림은 고급 내용이지만, 2.5가 2가 되는 건 학생들이 의아해할 수 있으니 미리 언급합니다.
+          대부분의 경우에는 우리가 아는 반올림과 같습니다.
+        </aside>
+      </section>
+
+      <!-- 12. 연산 우선순위 -->
+      <section>
+        <h2>연산 순서</h2>
+        <pre><code class="language-python" data-trim>
+# 수학이랑 같아! 곱셈/나눗셈 먼저
+print(2 + 3 * 4)      # 14  (3*4=12, +2=14)
+
+# 괄호가 최우선!
+print((2 + 3) * 4)    # 20  (2+3=5, *4=20)
+
+# ** > * > + 순서
+print(2 ** 3 + 1)     # 9   (2³=8, +1=9)
+        </code></pre>
+        <div class="fragment tip-box">
+          헷갈리면 <strong>괄호를 써!</strong><br>
+          괄호는 항상 가장 먼저 계산돼
+        </div>
+        <aside class="notes">
+          연산 우선순위: ** > *, /, //, % > +, -
+          헷갈리면 괄호를 쓰라고 안내합니다. 가독성도 좋아집니다.
+        </aside>
+      </section>
+
+      <!-- 13. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (3분)</h2>
+          <p style="font-size:1.2em;">초(second)를 시:분:초로 변환해 봐!</p>
+          <br>
+          <ol style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">total_seconds를 입력받기 (예: 3661)</li>
+            <li class="fragment">// 와 %로 시간, 분, 초 계산</li>
+            <li class="fragment">f-string으로 "1시간 1분 1초" 출력</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          힌트: 3661초
+          hours = 3661 // 3600 → 1
+          남은 = 3661 % 3600 → 61
+          minutes = 61 // 60 → 1
+          seconds = 61 % 60 → 1
+        </aside>
+      </section>
+
+      <!-- 14. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>// 와 % 를 헷갈려!</strong>
+          <pre><code class="language-python"># 10을 3으로 나눈 "몫"을 구하고 싶은데...
+print(10 % 3)    # 1  ← 이건 나머지야!</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>암기법: "나누기=// 나머지=%"</strong>
+          <pre><code class="language-python">print(10 // 3)   # 3  ← 이게 몫!
+print(10 % 3)    # 1  ← 이게 나머지!</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          <strong>외우기:</strong> "//"는 두 줄이니까 "몫"(두 글자)<br>
+          "%"는 동그라미가 있으니까 "나머지"(동전이 남았다!)
+        </div>
+        <aside class="notes">
+          //와 %를 헷갈리는 것은 매우 흔한 실수입니다.
+          재미있는 암기법을 함께 만들어보세요.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>0으로 나누기!</strong>
+          <pre><code class="language-python">print(10 / 0)    # ZeroDivisionError!</code></pre>
+          <code>ZeroDivisionError: division by zero</code>
+        </div>
+        <div class="fragment correct-box">
+          <strong>0으로는 절대 나눌 수 없어!</strong><br>
+          수학에서도 안 되듯이, 파이썬에서도 에러가 나
+        </div>
+        <aside class="notes">
+          ZeroDivisionError는 사용자 입력을 받을 때 특히 조심해야 합니다.
+          나중에 if문으로 방어하는 법을 배울 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 16. 정리 -->
+      <section>
+        <h2>오늘 배운 것 정리</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>/</code>는 일반 나누기 (실수 결과)</li>
+          <li class="fragment"><code>//</code>는 몫, <code>%</code>는 나머지</li>
+          <li class="fragment"><code>**</code>는 거듭제곱 (수학의 ^)</li>
+          <li class="fragment"><code>round(값, 자릿수)</code>로 반올림</li>
+          <li class="fragment">헷갈리면 <strong>괄호</strong>를 써라!</li>
+        </ul>
+        <aside class="notes">
+          연산자 정리. 특히 //, % 구분을 한 번 더 확인하세요.
+        </aside>
+      </section>
+
+      <!-- 17. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>"나누기=//, 나머지=%"</strong><br>
+          이것만 외우면 연산자의 세계 클리어!
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>단위 변환 = // 와 %</strong><br>
+          분→시간, 초→분, 센치→미터... 무조건 이 패턴!
+        </div>
+        <div class="fragment tip-box">
+          <strong>짝수 판별 = % 2</strong><br>
+          <code>n % 2 == 0</code>이면 짝수, 아니면 홀수
+        </div>
+        <aside class="notes">
+          핵심 패턴 3가지를 정리합니다. 이 패턴들은 계속 나옵니다.
+        </aside>
+      </section>
+
+      <!-- 18. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🚀</span>
+          <h2>도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>연산자의 세계</strong>에 도전해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+        </div>
+        <aside class="notes">
+          World 4 문제로 이동하게 하세요.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>

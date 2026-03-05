@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World 7: 보스전 - pythink2 강의안</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section>
+        <span class="big-emoji">🏆</span>
+        <h1>보스전</h1>
+        <p class="subtitle">World 7 — 배운 무기를 모두 꺼내는 시간!</p>
+        <p><span class="world-badge">pythink2 강의안</span></p>
+        <aside class="notes">
+          보스전은 World 1~6에서 배운 모든 개념을 종합하는 단계입니다.
+          새로운 문법은 거의 없고, 문제를 분해하고 조합하는 능력이 핵심입니다.
+        </aside>
+      </section>
+
+      <!-- 2. 오늘 배울 것 -->
+      <section>
+        <h2>오늘 배울 것</h2>
+        <ul class="objectives">
+          <li class="fragment">큰 문제를 <strong>작은 조각으로 분해</strong>하기</li>
+          <li class="fragment">배운 개념들을 <strong>조합</strong>해서 풀기</li>
+          <li class="fragment"><strong>변수 추적</strong>으로 코드 흐름 따라가기</li>
+        </ul>
+        <aside class="notes">
+          보스전의 핵심은 "분해"와 "조합"입니다.
+          Computational Thinking의 핵심 요소입니다.
+        </aside>
+      </section>
+
+      <!-- 3. 비유 -->
+      <section>
+        <h2>보스전이란?</h2>
+        <div class="analogy-card">
+          <p>🎮 보스전은 <strong>배운 무기를 모두 꺼내는</strong> 시간!<br>한 가지만으론 못 이겨, 여러 개를 조합해야 해</p>
+        </div>
+        <div class="fragment" style="margin-top:1em;">
+          <table style="margin:0 auto; font-size:0.9em;">
+            <tr><th>무기</th><th>World</th></tr>
+            <tr><td>print(), f-string</td><td>1. 출력</td></tr>
+            <tr><td>변수, 계산</td><td>2. 변수</td></tr>
+            <tr><td>input(), int()</td><td>3. 입력</td></tr>
+            <tr><td>//, %, **</td><td>4. 연산자</td></tr>
+            <tr><td>if, elif, else</td><td>5a. 조건문</td></tr>
+            <tr><td>인덱싱, 슬라이싱</td><td>5b. 문자열</td></tr>
+            <tr><td>for, while</td><td>6. 반복문</td></tr>
+          </table>
+        </div>
+        <aside class="notes">
+          지금까지 배운 모든 것을 정리합니다.
+          학생들에게 어떤 "무기"를 기억하는지 물어보세요.
+        </aside>
+      </section>
+
+      <!-- 4. 핵심 전략: 분해 -->
+      <section>
+        <h2>전략 1: 큰 문제를 잘게 나눠!</h2>
+        <div class="tip-box" style="font-size:1.1em;">
+          <strong>Decomposition (분해)</strong><br>
+          큰 문제 하나를 → 작은 문제 여러 개로!
+        </div>
+        <div class="fragment" style="margin-top:1em;">
+          <p><strong>예: "1~100 중 3의 배수 합 구하기"</strong></p>
+          <ol>
+            <li class="fragment">1~100까지 반복 → <strong>for + range</strong></li>
+            <li class="fragment">3의 배수인지 확인 → <strong>if + %</strong></li>
+            <li class="fragment">합 누적 → <strong>변수 + 누적 패턴</strong></li>
+            <li class="fragment">결과 출력 → <strong>print + f-string</strong></li>
+          </ol>
+        </div>
+        <aside class="notes">
+          분해(Decomposition)는 CT의 4대 요소 중 하나입니다.
+          문제를 한 번에 풀려 하지 말고, 단계별로 나누는 습관을 들이세요.
+        </aside>
+      </section>
+
+      <!-- 5. 분해 실전 코드 -->
+      <section>
+        <h2>분해 → 코드로!</h2>
+        <pre><code class="language-python" data-trim>
+# 1~100 중 3의 배수 합 구하기
+
+total = 0                    # 3. 합 누적 변수
+
+for i in range(1, 101):      # 1. 1~100 반복
+    if i % 3 == 0:           # 2. 3의 배수 확인
+        total += i           # 3. 누적
+
+print(f"3의 배수 합: {total}")  # 4. 결과 출력
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+3의 배수 합: 1683
+        </code></pre>
+        <div class="fragment tip-box">
+          각 줄이 분해한 단계 하나에 대응해!<br>
+          분해만 잘 하면 코드는 자연스럽게 나와
+        </div>
+        <aside class="notes">
+          분해한 각 단계가 코드의 각 줄에 대응하는 것을 보여주세요.
+          주석으로 단계 번호를 표시하면 더 명확합니다.
+        </aside>
+      </section>
+
+      <!-- 6. 전략: 변수 추적 -->
+      <section>
+        <h2>전략 2: 변수를 추적해!</h2>
+        <div class="tip-box" style="font-size:1.1em;">
+          <strong>Variable Tracking (변수 추적)</strong><br>
+          각 단계에서 변수 값이 어떻게 변하는지 표로 따라가기
+        </div>
+        <pre class="fragment"><code class="language-python" data-trim>
+x = 10
+y = 3
+while x > 0:
+    x = x - y
+    print(f"x={x}")
+        </code></pre>
+        <div class="fragment">
+          <table style="margin:0 auto; font-size:0.9em;">
+            <tr><th>회차</th><th>x (시작)</th><th>x - y</th><th>x (끝)</th></tr>
+            <tr><td>1</td><td>10</td><td>10-3</td><td>7</td></tr>
+            <tr><td>2</td><td>7</td><td>7-3</td><td>4</td></tr>
+            <tr><td>3</td><td>4</td><td>4-3</td><td>1</td></tr>
+            <tr><td>4</td><td>1</td><td>1-3</td><td>-2 (종료!)</td></tr>
+          </table>
+        </div>
+        <aside class="notes">
+          변수 추적표는 코드를 이해하고 디버깅하는 가장 확실한 방법입니다.
+          학생들에게 종이에 직접 그려보게 하세요.
+        </aside>
+      </section>
+
+      <!-- 7. 종합 예제 1: 자릿수 분리 -->
+      <section>
+        <h2>종합 예제: 자릿수 분리</h2>
+        <p>"세 자리 수의 각 자릿수를 분리해서 합 구하기"</p>
+        <pre class="fragment"><code class="language-python" data-trim>
+num = int(input("세 자리 수: "))
+
+hundreds = num // 100
+tens = (num // 10) % 10
+ones = num % 10
+
+total = hundreds + tens + ones
+print(f"{hundreds} + {tens} + {ones} = {total}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+세 자리 수: 357
+3 + 5 + 7 = 15
+        </code></pre>
+        <aside class="notes">
+          // 와 %의 실전 활용입니다.
+          357을 예로: 357//100=3, (357//10)%10=5, 357%10=7
+        </aside>
+      </section>
+
+      <!-- 8. 이렇게도 할 수 있어 -->
+      <section>
+        <h2>이렇게도 할 수 있어!</h2>
+        <h3>문자열로 자릿수 분리</h3>
+        <pre><code class="language-python" data-trim>
+num = input("세 자리 수: ")   # 문자열로 받기!
+
+total = int(num[0]) + int(num[1]) + int(num[2])
+print(f"자릿수 합: {total}")
+        </code></pre>
+        <div class="fragment">
+          <h3>반복문으로!</h3>
+          <pre><code class="language-python" data-trim>
+num = input("숫자: ")
+total = 0
+for digit in num:
+    total += int(digit)
+print(f"자릿수 합: {total}")
+          </code></pre>
+        </div>
+        <div class="fragment tip-box">
+          같은 문제를 여러 방법으로 풀 수 있어!<br>
+          <strong>하나의 문제, 다양한 사고의 경로</strong>
+        </div>
+        <aside class="notes">
+          pythink2의 철학 "하나의 문제, 다양한 사고의 경로"를 직접 체험합니다.
+          //% 방식, 문자열 인덱싱, 반복문 — 세 가지 접근법이 모두 유효합니다.
+        </aside>
+      </section>
+
+      <!-- 9. 종합 예제 2: 소수 판별 -->
+      <section>
+        <h2>종합 예제: 소수 판별</h2>
+        <p>"입력받은 수가 소수인지 판별하기"</p>
+        <div class="fragment">
+          <p><strong>분해:</strong></p>
+          <ol style="font-size:0.9em;">
+            <li>수 입력받기 (input + int)</li>
+            <li>2부터 n-1까지 반복 (for + range)</li>
+            <li>나누어 떨어지면 소수 아님 (if + %)</li>
+            <li>결과 출력 (print)</li>
+          </ol>
+        </div>
+        <pre class="fragment"><code class="language-python" data-trim>
+n = int(input("수: "))
+is_prime = True
+
+for i in range(2, n):
+    if n % i == 0:
+        is_prime = False
+        break
+
+if n < 2:
+    is_prime = False
+
+if is_prime:
+    print(f"{n}은(는) 소수!")
+else:
+    print(f"{n}은(는) 소수가 아님")
+        </code></pre>
+        <aside class="notes">
+          소수 판별은 여러 개념이 종합된 대표적 문제입니다.
+          for, if, %, break, 플래그 변수(is_prime)가 모두 사용됩니다.
+        </aside>
+      </section>
+
+      <!-- 10. 종합 예제 3: 절댓값과 부호 -->
+      <section>
+        <h2>종합 예제: 양수/음수 개수 세기</h2>
+        <pre><code class="language-python" data-trim>
+n = int(input("몇 개의 수? "))
+pos = 0     # 양수 개수
+neg = 0     # 음수 개수
+zero = 0    # 0 개수
+
+for i in range(n):
+    num = int(input(f"{i+1}번째 수: "))
+    if num > 0:
+        pos += 1
+    elif num < 0:
+        neg += 1
+    else:
+        zero += 1
+
+print(f"양수: {pos}, 음수: {neg}, 0: {zero}")
+        </code></pre>
+        <div class="fragment tip-box">
+          <strong>카운팅 패턴</strong> + <strong>조건 분기</strong> 조합!
+        </div>
+        <aside class="notes">
+          for + if-elif-else + 카운팅 패턴의 조합입니다.
+          변수 3개를 동시에 추적하는 연습이 됩니다.
+        </aside>
+      </section>
+
+      <!-- 11. 종합 예제 4: 문자열 + 조건 + 반복 -->
+      <section>
+        <h2>종합 예제: 모음 세기</h2>
+        <pre><code class="language-python" data-trim>
+text = input("영어 문장: ").lower()
+vowels = "aeiou"
+count = 0
+
+for char in text:
+    if char in vowels:
+        count += 1
+
+print(f"모음 개수: {count}")
+        </code></pre>
+        <pre class="fragment"><code class="language-text" data-trim>
+영어 문장: Hello Python
+모음 개수: 3
+        </code></pre>
+        <div class="fragment tip-box">
+          문자열 순회(for) + 포함 검사(in) + 카운팅 = 텍스트 분석!
+        </div>
+        <aside class="notes">
+          .lower()로 대소문자를 통일한 후 처리하는 패턴입니다.
+          World 5b의 문자열 + World 5a의 조건 + World 6의 반복이 합쳐진 예제입니다.
+        </aside>
+      </section>
+
+      <!-- 12. 디버깅 전략 -->
+      <section>
+        <h2>디버깅: 코드가 안 될 때</h2>
+        <ol>
+          <li class="fragment"><strong>print()로 찍어봐!</strong><br>
+            <code>print(f"DEBUG: x={x}")</code></li>
+          <li class="fragment"><strong>변수 추적표를 그려!</strong><br>
+            종이에 회차별로 변수 값 적기</li>
+          <li class="fragment"><strong>경계값을 넣어봐!</strong><br>
+            0, 1, 최대값, 음수 등</li>
+          <li class="fragment"><strong>한 줄씩 읽어!</strong><br>
+            코드를 천천히 소리 내어 읽기</li>
+        </ol>
+        <aside class="notes">
+          디버깅은 프로그래밍의 핵심 스킬입니다.
+          "버그가 있는 코드"가 아니라 "아직 완성되지 않은 코드"라고 생각하게 하세요.
+        </aside>
+      </section>
+
+      <!-- 13. 직접 해보기 -->
+      <section data-background-color="#667eea">
+        <div class="activity-slide">
+          <h2>직접 해보기! (5분)</h2>
+          <p style="font-size:1.2em;">종합 문제: 비밀번호 검증기</p>
+          <br>
+          <ul style="text-align:left; max-width:80%; margin:0 auto;">
+            <li class="fragment">비밀번호를 입력받기</li>
+            <li class="fragment">길이가 8자 이상인지 확인</li>
+            <li class="fragment">숫자가 하나 이상 포함되어 있는지 확인</li>
+            <li class="fragment">조건을 만족하면 "강한 비밀번호!"<br>아니면 어떤 조건이 부족한지 알려주기</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          5분으로 시간을 좀 더 줍니다. 종합 문제이므로 시간이 더 필요합니다.
+          힌트: len()으로 길이 확인, for + isdigit()로 숫자 포함 확인
+        </aside>
+      </section>
+
+      <!-- 14. 자주 하는 실수 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>elif를 빼먹고 if만 나열!</strong>
+          <pre><code class="language-python">score = 85
+if score >= 90:
+    grade = "A"
+if score >= 80:     # elif여야 해!
+    grade = "B"
+if score >= 70:     # elif여야 해!
+    grade = "C"
+# 결과: grade = "C" (B가 아님!)</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>연속 조건은 elif로!</strong><br>
+          if-if-if는 모두 독립적으로 검사해!<br>
+          if-elif-elif는 첫 번째 True에서 멈춰!
+        </div>
+        <aside class="notes">
+          if-if-if와 if-elif-elif의 차이는 매우 중요합니다.
+          if-if-if는 모든 조건을 독립적으로 검사하므로, 마지막 조건이 덮어씁니다.
+        </aside>
+      </section>
+
+      <!-- 15. 자주 하는 실수 2 -->
+      <section>
+        <h2>자주 하는 실수</h2>
+        <div class="error-box">
+          <strong>음수 처리를 잊어!</strong>
+          <pre><code class="language-python"># 두 수의 차이를 구하고 싶은데...
+a = 3
+b = 7
+diff = a - b
+print(diff)    # -4  (음수가 나와!)</code></pre>
+        </div>
+        <div class="fragment correct-box">
+          <strong>abs()로 절댓값!</strong>
+          <pre><code class="language-python">diff = abs(a - b)
+print(diff)    # 4</code></pre>
+        </div>
+        <div class="fragment tip-box">
+          <code>abs()</code> = absolute(절대적인)의 약자<br>
+          "차이"를 구할 때는 <code>abs()</code>를 꼭 기억해!
+        </div>
+        <aside class="notes">
+          abs()는 간단하지만 자주 빠뜨리는 함수입니다.
+          "두 수의 차이"를 구할 때 항상 abs()를 생각하게 하세요.
+        </aside>
+      </section>
+
+      <!-- 16. 문제 풀이 프로세스 -->
+      <section>
+        <h2>문제 풀이 5단계</h2>
+        <ol>
+          <li class="fragment"><span class="step-number">1</span> <strong>이해</strong>: 문제가 뭘 요구해?</li>
+          <li class="fragment"><span class="step-number">2</span> <strong>분해</strong>: 작은 단계로 나누기</li>
+          <li class="fragment"><span class="step-number">3</span> <strong>연결</strong>: 어떤 "무기"를 쓸지 결정</li>
+          <li class="fragment"><span class="step-number">4</span> <strong>코딩</strong>: 한 단계씩 코드로</li>
+          <li class="fragment"><span class="step-number">5</span> <strong>검증</strong>: 경계값으로 테스트</li>
+        </ol>
+        <aside class="notes">
+          이 5단계 프로세스를 습관화하면 어떤 문제든 접근할 수 있습니다.
+          특히 2단계(분해)가 가장 중요합니다.
+        </aside>
+      </section>
+
+      <!-- 17. 정리: 무기 총정리 -->
+      <section>
+        <h2>무기 총정리!</h2>
+        <ul class="checklist">
+          <li class="fragment"><code>print()</code> + <code>f-string</code>: 출력의 기본</li>
+          <li class="fragment"><code>변수</code> + <code>=</code>: 데이터 저장과 계산</li>
+          <li class="fragment"><code>int(input())</code>: 입력받아서 숫자로</li>
+          <li class="fragment"><code>// % **</code>: 몫, 나머지, 거듭제곱</li>
+          <li class="fragment"><code>if elif else</code>: 조건에 따라 분기</li>
+          <li class="fragment"><code>[인덱싱] [슬라이싱]</code>: 문자열 다루기</li>
+          <li class="fragment"><code>for while</code>: 반복의 힘</li>
+        </ul>
+        <aside class="notes">
+          전체 무기를 총정리합니다.
+          이 7가지만 잘 조합하면 대부분의 기초 문제를 풀 수 있습니다.
+        </aside>
+      </section>
+
+      <!-- 18. 꿀팁 -->
+      <section>
+        <h2>꿀팁</h2>
+        <div class="tip-box" style="margin-bottom:1em;">
+          <strong>큰 문제 → 작게 나누기!</strong><br>
+          한 번에 풀려 하지 말고, 단계별로 분해해
+        </div>
+        <div class="fragment tip-box" style="margin-bottom:1em;">
+          <strong>변수로 추적하기!</strong><br>
+          중간값을 변수에 저장하면 디버깅이 쉬워
+        </div>
+        <div class="fragment tip-box">
+          <strong>여러 방법으로 풀어봐!</strong><br>
+          같은 문제를 다른 방법으로 풀면 사고력이 쑥쑥!
+        </div>
+        <aside class="notes">
+          보스전의 핵심 팁 세 가지입니다.
+          "하나의 문제, 다양한 사고의 경로"가 pythink2의 철학입니다.
+        </aside>
+      </section>
+
+      <!-- 19. 축하! -->
+      <section>
+        <span class="big-emoji">🎉</span>
+        <h2>축하해!</h2>
+        <p style="font-size:1.3em;">World 1부터 7까지<br><strong>모든 세계를 클리어</strong>했어!</p>
+        <div class="fragment" style="margin-top:1em;">
+          <p>이제 너는</p>
+          <ul>
+            <li>파이썬으로 <strong>생각</strong>을 표현할 수 있어</li>
+            <li>문제를 <strong>분해</strong>해서 풀 수 있어</li>
+            <li><strong>다양한 접근법</strong>을 시도할 수 있어</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          학생들의 성취를 축하해주세요!
+          지금까지 배운 것만으로도 많은 것을 할 수 있다는 것을 강조합니다.
+        </aside>
+      </section>
+
+      <!-- 20. 도전! -->
+      <section data-background-color="#f5576c">
+        <div class="challenge-slide">
+          <span class="big-emoji">🏆</span>
+          <h2>최종 보스에 도전!</h2>
+          <p style="font-size:1.3em;">pythink2에서<br><strong>보스전</strong>을 클리어해봐!</p>
+          <br>
+          <p><a href="https://pythink2.vercel.app" target="_blank">pythink2.vercel.app</a></p>
+          <p class="fragment" style="font-size:0.9em; margin-top:1em;">
+            AI 코치가 기다리고 있어!<br>
+            막히면 도움을 받을 수 있어 (단, 답은 안 알려줘!)
+          </p>
+        </div>
+        <aside class="notes">
+          최종 보스전 문제로 이동하게 하세요.
+          pythink2의 AI 코치가 힌트를 줄 수 있다고 안내합니다.
+          답을 직접 알려주지 않고, 사고를 유도하는 코칭을 합니다.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'slide',
+      plugins: [RevealHighlight, RevealNotes]
+    });
+  </script>
+  <script src="css/theme-switcher.js"></script>
+</body>
+</html>
