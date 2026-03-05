@@ -11,14 +11,16 @@
   font-family: 'Noto Sans KR', system-ui, sans-serif;
 }
 
-.reveal h1 { font-size: 2.5em; font-weight: 700; }
-.reveal h2 { font-size: 2em; font-weight: 600; }
-.reveal h3 { font-size: 1.5em; font-weight: 600; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none !important; }
+.reveal h1 { font-size: 1.8em; font-weight: 700; }
+.reveal h2 { font-size: 1.4em; font-weight: 600; }
+.reveal h3 { font-size: 1.15em; font-weight: 600; }
+.reveal { font-size: 32px; }
 .reveal pre { border-radius: 12px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-.reveal code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
-.reveal ul, .reveal ol { text-align: left; }
-.reveal li { margin-bottom: 0.4em; line-height: 1.6; }
-.reveal p { line-height: 1.7; }
+.reveal code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
+.reveal ul, .reveal ol { text-align: left; font-size: 0.9em; }
+.reveal li { margin-bottom: 0.3em; line-height: 1.5; }
+.reveal p { line-height: 1.6; font-size: 0.9em; }
 .reveal blockquote { border-left: 4px solid; padding: 0.5em 1em; border-radius: 0 8px 8px 0; font-style: normal; }
 
 /* ─── 테마 선택기 ─── */
